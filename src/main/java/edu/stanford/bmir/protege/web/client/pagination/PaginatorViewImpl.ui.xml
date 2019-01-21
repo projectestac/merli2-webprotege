@@ -7,6 +7,8 @@
 
     <ui:with field="wp" type="edu.stanford.bmir.protege.web.resources.WebProtegeClientBundle"/>
     <ui:style>
+        @external .wp-pagination;
+
         .main {
             padding: 2px;
         }
@@ -22,9 +24,14 @@
             display: inline-block;
             vertical-align: baseline;
         }
+        .wp-pagination {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
     </ui:style>
-    <g:HTMLPanel addStyleNames="{style.main}">
-      <g:HTMLPanel>
+    <g:HTMLPanel addStyleNames="wp-pagination {style.main}">
+      <g:HTMLPanel addStyleNames="wp-pagination-results">
         <ui:msg>
           <g:Label addStyleNames="{style.label}">Page</g:Label>
           <g:TextBox ui:field="pageNumberField" addStyleNames="{style.number}" visibleLength="5"/>
@@ -32,7 +39,7 @@
           <g:NumberLabel ui:field="pageCountField" addStyleNames="{style.label}"/>
         </ui:msg>
       </g:HTMLPanel>
-      <g:HTMLPanel>
+      <g:HTMLPanel addStyleNames="wp-pagination-actions">
         <g:Button ui:field="previousButton" addStyleNames="{style.button}">
           <ui:msg>Previous</ui:msg>
         </g:Button>

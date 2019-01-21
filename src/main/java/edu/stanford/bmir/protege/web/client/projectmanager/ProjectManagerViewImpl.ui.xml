@@ -91,8 +91,8 @@
             </g:HTMLPanel>
 
         </g:HTMLPanel>
-        <g:HTMLPanel addStyleNames="{style.projectList}">
-            <g:HTMLPanel addStyleNames="{style.sideBar}">
+        <g:HTMLPanel addStyleNames="wp-projects-manager {style.projectList}">
+            <g:HTMLPanel addStyleNames="wp-projects-sidebar {style.sideBar}">
                 <g:Button ui:field="createProjectButton" text="{msg.createProject}" enabled="false" addStyleNames="{wp.buttons.button} {wp.buttons.pageButton} {wp.buttons.primaryButton}"/>
                 <div style="height: 50px;"/>
                 <g:HTMLPanel addStyleNames="{style.filterPanel}">
@@ -116,7 +116,7 @@
                     <g:item value="OWNER"><ui:text from="{msg.sortByOwner}"/></g:item>
                 </g:ListBox>
             </g:HTMLPanel>
-            <projectlist:AvailableProjectsListViewImpl ui:field="projectListView" addStyleNames="{style.listView}"/>
+            <projectlist:AvailableProjectsListViewImpl ui:field="projectListView" addStyleNames="wp-projects-list {style.listView}"/>
         </g:HTMLPanel>
 
     </g:HTMLPanel>

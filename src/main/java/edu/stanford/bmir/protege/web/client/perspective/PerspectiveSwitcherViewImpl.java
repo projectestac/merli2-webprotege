@@ -75,6 +75,7 @@ public class PerspectiveSwitcherViewImpl extends Composite implements Perspectiv
         this.linkFactory = linkFactory;
         HTMLPanel rootElement = ourUiBinder.createAndBindUi(this);
         initWidget(rootElement);
+        addStyleName("wp-perspective-switcher");
     }
 
     @UiHandler("tabBar")

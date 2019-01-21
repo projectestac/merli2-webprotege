@@ -63,7 +63,7 @@
     </ui:style>
 
     <g:HTMLPanel addStyleNames="{style.main}">
-        <g:HTMLPanel addStyleNames="{style.header}">
+        <g:HTMLPanel addStyleNames="wp-projects-list-header {style.header}">
             <g:Label addStyleNames="{style.displayNameCol}" text="{msg.projectName}"/>
             <g:Label addStyleNames="{style.ownerCol}" text="{msg.owner}"/>
             <g:Label addStyleNames="{style.openedAtCol}" text="{msg.lastOpened}"/>

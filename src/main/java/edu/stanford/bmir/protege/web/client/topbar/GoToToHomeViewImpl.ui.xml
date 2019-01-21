@@ -7,7 +7,7 @@
         .main {
             display: flex;
             flex-direction: row;
-            align-items: baseline;
+            align-items: center;
         }
         .homeIcon {
             width: 16px;

@@ -30,6 +30,7 @@ public class PerspectiveViewImpl extends Composite implements PerspectiveView {
     @Inject
     public PerspectiveViewImpl() {
         initWidget(ourUiBinder.createAndBindUi(this));
+        addStyleName("wp-perspective-view");
     }
 
 

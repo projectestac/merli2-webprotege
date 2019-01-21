@@ -77,6 +77,7 @@ public class PortletUiImpl extends Composite implements PortletUi {
         this.nothingSelectedView = nothingSelectedView;
         setToolbarVisible(false);
         setMenuButtonVisible(false);
+        addStyleName("wp-portlet");
     }
 
     @Override

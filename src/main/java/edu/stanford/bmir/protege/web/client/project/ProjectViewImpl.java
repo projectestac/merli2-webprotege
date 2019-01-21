@@ -45,6 +45,7 @@ public class ProjectViewImpl extends Composite implements ProjectView, HasSelect
     @Inject
     public ProjectViewImpl() {
         initWidget(ourUiBinder.createAndBindUi(this));
+        perspectiveViewContainer.addStyleName("wp-perspective-container");
     }
 
     @Override
