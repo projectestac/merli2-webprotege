@@ -1,5 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:i18n='urn:import:cat.xtec.merli.i18n.client.widgets'
              ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
              ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
              ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
@@ -94,6 +95,9 @@
 
     <g:HTMLPanel addStyleNames="{style.main} {wp.login.login}">
         <g:HTMLPanel addStyleNames="{style.signup}">
+          <g:MenuBar>
+            <i18n:LocalesMenuItem/>
+          </g:MenuBar>
           <g:Button text="{msg.signUpForAccount}" ui:field="signUpForAccountButton"
                     addStyleNames="{wp.buttons.button} {wp.buttons.pageButton} {wp.buttons.alternateButton}"/>
         </g:HTMLPanel>

@@ -1,7 +1,8 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:projectlist="urn:import:edu.stanford.bmir.protege.web.client.projectlist">
+             xmlns:projectlist="urn:import:edu.stanford.bmir.protege.web.client.projectlist"
+             xmlns:i18n='urn:import:cat.xtec.merli.i18n.client.widgets'>
     <ui:with field="wp" type="edu.stanford.bmir.protege.web.resources.WebProtegeClientBundle"/>
     <ui:with field="msg" type="edu.stanford.bmir.protege.web.client.Messages"/>
     <ui:import field="edu.stanford.bmir.protege.web.client.projectmanager.AvailableProjectSortingKey.*"/>
@@ -87,6 +88,9 @@
             <g:HTMLPanel addStyleNames="{wp.laf.topBarLogo}"/>
             <g:HTMLPanel addStyleNames="{wp.laf.topBarContent}">
                 <g:Label text="{msg.projects}" addStyleNames="{style.title} {wp.laf.topBarTitle}"/>
+                <g:MenuBar>
+                  <i18n:LocalesMenuItem/>
+                </g:MenuBar>
                 <g:SimplePanel ui:field="loggedInUserButton" addStyleNames="{style.loggedInUserView}"/>
             </g:HTMLPanel>
 
