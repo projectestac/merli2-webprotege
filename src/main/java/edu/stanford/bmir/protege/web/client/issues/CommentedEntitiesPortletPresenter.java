@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.client.issues;
 
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.permissions.LoggedInUserProjectPermissionChecker;
 import edu.stanford.bmir.protege.web.client.portlet.AbstractWebProtegePortletPresenter;
 import edu.stanford.bmir.protege.web.client.portlet.PortletUi;
@@ -13,6 +12,7 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import java.util.Optional;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.VIEW_OBJECT_COMMENT;
 import static edu.stanford.bmir.protege.web.shared.permissions.PermissionsChangedEvent.ON_PERMISSIONS_CHANGED;
 
@@ -32,26 +32,21 @@ public class CommentedEntitiesPortletPresenter extends AbstractWebProtegePortlet
     @Nonnull
     private final LoggedInUserProjectPermissionChecker permissionChecker;
 
-    @Nonnull
-    private final Messages messages;
-
     private Optional<PortletUi> portletUi = Optional.empty();
 
     @Inject
     public CommentedEntitiesPortletPresenter(@Nonnull SelectionModel selectionModel,
                                              @Nonnull ProjectId projectId,
                                              @Nonnull CommentedEntitiesPresenter presenter,
-                                             @Nonnull LoggedInUserProjectPermissionChecker permissionChecker,
-                                             @Nonnull Messages messages) {
+                                             @Nonnull LoggedInUserProjectPermissionChecker permissionChecker) {
         super(selectionModel, projectId);
         this.presenter = presenter;
         this.permissionChecker = permissionChecker;
-        this.messages = messages;
     }
 
     @Override
     public void startPortlet(final PortletUi portletUi, WebProtegeEventBus eventBus) {
-        portletUi.setForbiddenMessage(messages.discussionThread_ViewingForbidden());
+        portletUi.setForbiddenMessage(MESSAGES.discussionThread_ViewingForbidden());
         permissionChecker.hasPermission(VIEW_OBJECT_COMMENT,
                                         canView -> {
                                             if (canView) {

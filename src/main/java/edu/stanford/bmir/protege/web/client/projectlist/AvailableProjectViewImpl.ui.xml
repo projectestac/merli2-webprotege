@@ -4,6 +4,7 @@
 >
 
     <ui:with field="wp" type="edu.stanford.bmir.protege.web.resources.WebProtegeClientBundle"/>
+    <ui:with field="msg" type="edu.stanford.bmir.protege.web.client.Messages"/>
 
     <ui:style>
         .main {
@@ -51,8 +52,8 @@
         }
     </ui:style>
 
-    <g:HTMLPanel addStyleNames="{style.main}">
-        <g:Label ui:field="displayNameField" addStyleNames="{style.displayNameCol}" title="Click to open"/>
+    <g:HTMLPanel addStyleNames="wp-projects-list-item {style.main}">
+        <g:Label ui:field="displayNameField" addStyleNames="{style.displayNameCol}" title="{msg.project_ClickToOpen}"/>
         <!--<g:Label ui:field="descriptionField" addStyleNames="{style.descriptionCol}"/>-->
         <g:HTMLPanel addStyleNames="{style.ownerCol}">
             <g:SimplePanel ui:field="ownerIconField" addStyleNames="{style.ownerIconField}"/>

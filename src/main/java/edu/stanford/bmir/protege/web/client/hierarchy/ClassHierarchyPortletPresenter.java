@@ -1,7 +1,6 @@
 package edu.stanford.bmir.protege.web.client.hierarchy;
 
 import com.google.gwt.view.client.SelectionChangeEvent;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.action.UIAction;
 import edu.stanford.bmir.protege.web.shared.dispatch.actions.CreateClassesAction;
 import edu.stanford.bmir.protege.web.client.library.dlg.WebProtegeDialog;
@@ -26,6 +25,7 @@ import javax.inject.Inject;
 import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.*;
 import static edu.stanford.bmir.protege.web.shared.hierarchy.HierarchyId.CLASS_HIERARCHY;
 import static edu.stanford.protege.gwt.graphtree.shared.tree.RevealMode.REVEAL_FIRST;
@@ -41,8 +41,6 @@ public class ClassHierarchyPortletPresenter extends AbstractWebProtegePortletPre
     private final WatchPresenter watchPresenter;
 
     private final SearchDialogController searchDialogController;
-
-    private final Messages messages;
 
     private final EntityHierarchyModel hierarchyModel;
     @Nonnull
@@ -81,7 +79,6 @@ public class ClassHierarchyPortletPresenter extends AbstractWebProtegePortletPre
                                           @Nonnull SelectionModel selectionModel,
                                           @Nonnull WatchPresenter watchPresenter,
                                           @Nonnull SearchDialogController searchDialogController,
-                                          @Nonnull Messages messages,
                                           @Nonnull EntityHierarchyModel hierarchyModel,
                                           @Nonnull EntityHierarchyContextMenuPresenterFactory contextMenuPresenterFactory,
                                           @Nonnull TreeWidget<EntityHierarchyNode, OWLEntity> treeWidget,
@@ -93,23 +90,22 @@ public class ClassHierarchyPortletPresenter extends AbstractWebProtegePortletPre
         super(selectionModel, projectId);
         this.watchPresenter = checkNotNull(watchPresenter);
         this.searchDialogController = checkNotNull(searchDialogController);
-        this.messages = checkNotNull(messages);
         this.hierarchyModel = checkNotNull(hierarchyModel);
         this.contextMenuPresenterFactory = checkNotNull(contextMenuPresenterFactory);
         this.treeWidget = checkNotNull(treeWidget);
         this.renderer = checkNotNull(renderer);
         this.createEntityPresenter = checkNotNull(createEntityPresenter);
 
-        this.createClassAction = new PortletAction(messages.create(),
+        this.createClassAction = new PortletAction(MESSAGES.create(),
                                                    this::handleCreateSubClasses);
 
-        this.deleteClassAction = new PortletAction(messages.delete(),
+        this.deleteClassAction = new PortletAction(MESSAGES.delete(),
                                                    this::handleDelete);
 
-        this.watchClassAction = new PortletAction(messages.watch(),
+        this.watchClassAction = new PortletAction(MESSAGES.watch(),
                                                   this::handleEditWatches);
 
-        this.searchAction = new PortletAction(messages.search(),
+        this.searchAction = new PortletAction(MESSAGES.search(),
                                               this::handleSearch);
         this.deleteEntityPresenter = deleteEntityPresenter;
         this.actionStatePresenter = actionStatePresenter;

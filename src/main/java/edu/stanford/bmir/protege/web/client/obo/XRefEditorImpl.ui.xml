@@ -1,6 +1,10 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:text="urn:import:edu.stanford.bmir.protege.web.client.library.text">
+             xmlns:text="urn:import:edu.stanford.bmir.protege.web.client.library.text"
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
 
     <ui:style>
         .cell-content {
@@ -38,13 +42,19 @@
     <g:HTMLPanel addStyleNames="{style.xref-editor}">
             <div class="{style.xrefEditorHolder}">
                 <div class="{style.id-field}">
-                    <text:PlaceholderTextBox ui:field="databaseIdField" placeholder="DB Id" addStyleNames="{style.cell-content}"/>
+                    <text:PlaceholderTextBox ui:field="databaseIdField" placeholder="DB Id" addStyleNames="{style.cell-content}">
+                      <ui:attribute name="placeholder"/>
+                    </text:PlaceholderTextBox>
                 </div>
                 <div class="{style.name-field}">
-                    <text:PlaceholderTextBox ui:field="databaseNameField" placeholder="DB Name" addStyleNames="{style.cell-content}"/>
+                    <text:PlaceholderTextBox ui:field="databaseNameField" placeholder="DB Name" addStyleNames="{style.cell-content}">
+                      <ui:attribute name="placeholder"/>
+                    </text:PlaceholderTextBox>
                 </div>
                 <div class="{style.description-field}">
-                    <text:PlaceholderTextBox ui:field="descriptionField" placeholder="Description" addStyleNames="{style.cell-content}"/>
+                    <text:PlaceholderTextBox ui:field="descriptionField" placeholder="Description" addStyleNames="{style.cell-content}">
+                      <ui:attribute name="placeholder"/>
+                    </text:PlaceholderTextBox>
                 </div>
             </div>
     </g:HTMLPanel>

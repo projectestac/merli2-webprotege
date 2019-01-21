@@ -1,13 +1,12 @@
 package edu.stanford.bmir.protege.web.client.issues;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Widget;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.library.dlg.*;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import java.util.function.Consumer;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 /**
  * Matthew Horridge
@@ -15,8 +14,6 @@ import java.util.function.Consumer;
  * 7 Oct 2016
  */
 public class CommentEditorDialog {
-
-    private static final Messages MESSAGES = GWT.create(Messages.class);
 
     private final CommentEditorView view;
 

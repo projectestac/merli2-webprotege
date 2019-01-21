@@ -13,6 +13,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
+
 /**
  * Matthew Horridge
  * Stanford Center for Biomedical Informatics Research
@@ -37,7 +39,9 @@ public class PortletChooserPresenter {
 
     public void show(final PortletSelectedHandler handler) {
         view.setAvailablePortlets(getPortletDescriptorList());
-        WebProtegeOKCancelDialogController<Optional<PortletId>> controller = new WebProtegeOKCancelDialogController<java.util.Optional<PortletId>>("Choose view") {
+        WebProtegeOKCancelDialogController<Optional<PortletId>> controller = new WebProtegeOKCancelDialogController<java.util.Optional<PortletId>>(
+            MESSAGES.dialog_title_chooseView()) {
+
             @Override
             public Widget getWidget() {
                 return view.asWidget();

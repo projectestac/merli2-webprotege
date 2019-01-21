@@ -30,6 +30,7 @@ import org.semanticweb.owlapi.vocab.OWLRDFVocabulary;
 
 import java.util.*;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.resources.WebProtegeClientBundle.BUNDLE;
 
 /**

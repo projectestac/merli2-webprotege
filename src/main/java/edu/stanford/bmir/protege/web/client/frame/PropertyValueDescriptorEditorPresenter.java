@@ -22,6 +22,8 @@ import org.semanticweb.owlapi.model.EntityType;
 import java.util.Collection;
 import java.util.Optional;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
+
 /**
  * @author Matthew Horridge, Stanford University, Bio-Medical Informatics Research Group, Date: 27/02/2014
  */

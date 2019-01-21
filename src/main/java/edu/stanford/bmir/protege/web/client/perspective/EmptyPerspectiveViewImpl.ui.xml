@@ -1,5 +1,10 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
+
     <ui:style>
         .main {
             position: absolute;
@@ -35,9 +40,9 @@
     <g:HTMLPanel addStyleNames="{style.main}">
         <g:HTMLPanel addStyleNames="{style.content}">
             <g:HTMLPanel ui:field="hasText" addStyleNames="{style.label}">
-                Empty<br/>
+                <ui:msg>Empty</ui:msg><br/>
                 <div style="font-weight: 200; padding-top: 20px;">
-                    Click to add content
+                    <ui:msg>Click to add content</ui:msg>
                 </div>
 
             </g:HTMLPanel>

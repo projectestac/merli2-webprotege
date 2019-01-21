@@ -1,5 +1,9 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
     <ui:style>
         .main {
 
@@ -10,7 +14,11 @@
         }
     </ui:style>
     <g:HTMLPanel addStyleNames="{style.main}">
-        <g:Button ui:field="applyChanges" text="Apply changes now" addStyleNames="{style.buttonStyle}"/>
-        <g:Button ui:field="applyChangesWithCommitMessage" text="Apply changes with commit message now" addStyleNames="{style.buttonStyle}"/>
+        <g:Button ui:field="applyChanges" addStyleNames="{style.buttonStyle}">
+          <ui:msg>Apply changes now</ui:msg>
+        </g:Button>
+        <g:Button ui:field="applyChangesWithCommitMessage" addStyleNames="{style.buttonStyle}">
+          <ui:msg>Apply changes with commit message now</ui:msg>
+        </g:Button>
     </g:HTMLPanel>
 </ui:UiBinder>

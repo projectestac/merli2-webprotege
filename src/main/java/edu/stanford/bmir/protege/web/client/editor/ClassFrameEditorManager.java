@@ -9,6 +9,7 @@ import edu.stanford.bmir.protege.web.shared.frame.ClassFrame;
 import edu.stanford.bmir.protege.web.shared.frame.GetClassFrameResult;
 
 import javax.inject.Inject;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 /**
  * Author: Matthew Horridge<br>

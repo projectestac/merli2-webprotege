@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.client.issues;
 
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.dispatch.DispatchServiceManager;
 import edu.stanford.bmir.protege.web.client.permissions.LoggedInUserProjectPermissionChecker;
 import edu.stanford.bmir.protege.web.client.user.LoggedInUserProvider;
@@ -17,6 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.client.library.msgbox.MessageBox.showYesNoConfirmBox;
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.*;
 import static edu.stanford.bmir.protege.web.shared.issues.AddEntityCommentAction.addComment;
@@ -50,9 +50,6 @@ public class DiscussionThreadPresenter implements HasDispose {
     private final LoggedInUserProvider loggedInUserProvider;
 
     @Nonnull
-    private final Messages messages;
-
-    @Nonnull
     private final ProjectId projectId;
 
     @Nonnull
@@ -68,7 +65,6 @@ public class DiscussionThreadPresenter implements HasDispose {
 
     @Inject
     public DiscussionThreadPresenter(@Nonnull DiscussionThreadView view,
-                                     @Nonnull Messages messages,
                                      @Nonnull ProjectId projectId,
                                      @Nonnull DispatchServiceManager dispatch,
                                      @Nonnull HandlerRegistrationManager eventBus,
@@ -77,7 +73,6 @@ public class DiscussionThreadPresenter implements HasDispose {
                                      @Nonnull CommentViewFactory commentViewFactory,
                                      @Nonnull Provider<CommentEditorDialog> commentEditorDialogProvider) {
         this.view = checkNotNull(view);
-        this.messages = checkNotNull(messages);
         this.projectId = checkNotNull(projectId);
         this.dispatch = checkNotNull(dispatch);
         this.eventBus = eventBus;
@@ -193,8 +188,8 @@ public class DiscussionThreadPresenter implements HasDispose {
     }
 
     private void handleDeleteComment(Comment comment) {
-        showYesNoConfirmBox(messages.deleteCommentConfirmationBoxTitle(),
-                            messages.deleteCommentConfirmationBoxText(),
+        showYesNoConfirmBox(MESSAGES.deleteCommentConfirmationBoxTitle(),
+                            MESSAGES.deleteCommentConfirmationBoxText(),
                             () -> dispatch.execute(deleteComment(projectId, comment.getId()), result -> {}));
     }
 

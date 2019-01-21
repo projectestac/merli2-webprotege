@@ -8,6 +8,7 @@ import edu.stanford.bmir.protege.web.shared.project.ProjectId;
 import edu.stanford.bmir.protege.web.shared.revision.RevisionNumber;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.shared.download.ProjectDownloadConstants.*;
 
 /**

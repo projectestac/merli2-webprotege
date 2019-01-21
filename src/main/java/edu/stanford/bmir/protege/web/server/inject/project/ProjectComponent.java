@@ -23,4 +23,3 @@ public interface ProjectComponent {
 
     ProjectActionHandlerRegistry getActionHandlerRegistry();
 }
-

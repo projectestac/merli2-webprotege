@@ -1,7 +1,6 @@
 package edu.stanford.bmir.protege.web.client.project;
 
 import com.google.gwt.user.client.ui.Widget;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.library.dlg.DialogButton;
 import edu.stanford.bmir.protege.web.client.library.dlg.HasRequestFocus;
 import edu.stanford.bmir.protege.web.client.library.dlg.WebProtegeOKCancelDialogController;
@@ -10,6 +9,7 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import java.util.Optional;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -24,9 +24,8 @@ public class CreateNewProjectDialogController extends WebProtegeOKCancelDialogCo
     private final CreateNewProjectPresenter presenter;
 
     @Inject
-    public CreateNewProjectDialogController(@Nonnull CreateNewProjectPresenter projectPresenter,
-                                            @Nonnull Messages messages) {
-        super(messages.createProject());
+    public CreateNewProjectDialogController(@Nonnull CreateNewProjectPresenter projectPresenter) {
+        super(MESSAGES.createProject());
         this.presenter = checkNotNull(projectPresenter);
         setDialogButtonHandler(DialogButton.OK, (data, closer) -> {
             if(presenter.validate()) {

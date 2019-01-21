@@ -2,7 +2,11 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:csv="urn:import:edu.stanford.bmir.protege.web.client.csv"
              xmlns:dlg="urn:import:edu.stanford.bmir.protege.web.client.library.dlg"
-        >
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
+
     <ui:style>
         .holder {
             /*position: absolute;*/
@@ -45,7 +49,9 @@
 
             <tr valign="top">
                 <td>
-                    <dlg:WebProtegeDialogLabel text="Import rows as"/>
+                    <dlg:WebProtegeDialogLabel>
+                      <ui:msg>Import rows as</ui:msg>
+                    </dlg:WebProtegeDialogLabel>
                 </td>
                 <td>
                     <g:ListBox visibleItemCount="1" ui:field="importTypeField" width="200px"/>
@@ -54,7 +60,9 @@
 
             <tr valign="top">
                 <td>
-                    <dlg:WebProtegeDialogLabel text="Display name column"/>
+                    <dlg:WebProtegeDialogLabel>
+                      <ui:msg>Display name column</ui:msg>
+                    </dlg:WebProtegeDialogLabel>
                 </td>
                 <td>
                     <g:ListBox visibleItemCount="1" ui:field="displayNameField" width="200px"/>
@@ -64,7 +72,9 @@
 
             <tr valign="top">
                 <td>
-                    <dlg:WebProtegeDialogLabel text="Property value mapping"/>
+                    <dlg:WebProtegeDialogLabel>
+                      <ui:msg>Property value mapping</ui:msg>
+                    </dlg:WebProtegeDialogLabel>
                 </td>
                 <td>
                     <g:DockLayoutPanel width="100%" height="200px" unit="EM">

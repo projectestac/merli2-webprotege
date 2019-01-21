@@ -3,9 +3,7 @@ package edu.stanford.bmir.protege.web.client.change;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Ordering;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.i18n.shared.DateTimeFormat;
 import com.google.gwt.safehtml.shared.SafeHtml;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.dispatch.DispatchServiceCallback;
 import edu.stanford.bmir.protege.web.client.dispatch.DispatchServiceManager;
 import edu.stanford.bmir.protege.web.client.download.ProjectRevisionDownloader;
@@ -13,6 +11,7 @@ import edu.stanford.bmir.protege.web.client.library.dlg.DialogButton;
 import edu.stanford.bmir.protege.web.client.library.msgbox.MessageBox;
 import edu.stanford.bmir.protege.web.client.permissions.LoggedInUserProjectPermissionChecker;
 import edu.stanford.bmir.protege.web.client.progress.HasBusy;
+import edu.stanford.bmir.protege.web.client.ui.TimeFormatter;
 import edu.stanford.bmir.protege.web.shared.TimeUtil;
 import edu.stanford.bmir.protege.web.shared.change.*;
 import edu.stanford.bmir.protege.web.shared.diff.DiffElement;
@@ -28,6 +27,7 @@ import javax.inject.Inject;
 import java.util.*;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.client.library.dlg.DialogButton.CANCEL;
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.REVERT_CHANGES;
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.VIEW_CHANGES;
@@ -44,8 +44,6 @@ public class ChangeListViewPresenter {
 
     private final LoggedInUserProjectPermissionChecker permissionChecker;
 
-    private final Messages messages;
-
     private boolean revertChangesVisible = false;
 
     private boolean downloadVisible = false;
@@ -61,12 +59,10 @@ public class ChangeListViewPresenter {
     @Inject
     public ChangeListViewPresenter(ChangeListView view,
                                    DispatchServiceManager dispatchServiceManager,
-                                   LoggedInUserProjectPermissionChecker permissionChecker,
-                                   Messages messages) {
+                                   LoggedInUserProjectPermissionChecker permissionChecker) {
         this.view = view;
         this.permissionChecker = permissionChecker;
         this.dispatchServiceManager = dispatchServiceManager;
-        this.messages = messages;
     }
 
     public void setRevertChangesVisible(boolean revertChangesVisible) {
@@ -156,7 +152,10 @@ public class ChangeListViewPresenter {
             if (!TimeUtil.isSameCalendarDay(previousTimeStamp, changeTimeStamp)) {
                 previousTimeStamp = changeTimeStamp;
                 Date date = new Date(changeTimeStamp);
-                view.addSeparator("\u25C9   " + messages.change_changesOn() + " " + DateTimeFormat.getFormat("EEE, d MMM yyyy").format(date));
+
+                view.addSeparator("\u25C9   " + MESSAGES.change_changesOn(
+                    TimeFormatter.get().toFullDate(date))
+                );
             }
 
             ChangeDetailsView view = new ChangeDetailsViewImpl();
@@ -197,12 +196,12 @@ public class ChangeListViewPresenter {
     }
 
     private void startRevertChangesWorkflow(final ProjectChange projectChange) {
-        String subMessage = messages.change_revertChangesInRevisionQuestion();
+        String subMessage = MESSAGES.change_revertChangesInRevisionQuestion();
         MessageBox.showConfirmBox(
-                messages.change_revertChangesQuestion(),
+                MESSAGES.change_revertChangesQuestion(),
                 subMessage,
                 CANCEL,
-                DialogButton.get(messages.change_revert()),
+                DialogButton.get(MESSAGES.change_revert()),
                 () -> revertChanges(projectChange),
                 CANCEL);
     }

@@ -1,5 +1,9 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
 
     <ui:with field="wp" type="edu.stanford.bmir.protege.web.resources.WebProtegeClientBundle"/>
 
@@ -38,18 +42,18 @@
     <g:HTMLPanel addStyleNames="{wp.style.formMain} {style.termIdEditor}">
 
         <div class="{wp.style.formGroup} {style.idField}">
-            <g:Label text="Id" styleName="{wp.style.formLabel}"/>
+            <g:Label styleName="{wp.style.formLabel}"><ui:msg>Id</ui:msg></g:Label>
             <g:TextBox ui:field="idField" enabled="false" addStyleNames="{style.generalField} {style.idTextBox}"/>
         </div>
 
         <div class="{wp.style.formGroup} {style.nameField}">
-            <g:Label text="Name" addStyleNames="{wp.style.formLabel}"/>
+            <g:Label addStyleNames="{wp.style.formLabel}"><ui:msg>Name</ui:msg></g:Label>
             <g:TextBox ui:field="nameField" addStyleNames="{style.nameTextBox} {style.generalField}"/>
         </div>
 
 
         <div class="{wp.style.formGroup} {style.namespaceField}">
-            <g:Label text="Namespace" addStyleNames="{wp.style.formLabel}"/>
+            <g:Label addStyleNames="{wp.style.formLabel}"><ui:msg>Namespace</ui:msg></g:Label>
             <g:SuggestBox ui:field="namespaceField" addStyleNames="{style.generalField}"/>
         </div>
 

@@ -20,6 +20,7 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 
 import static com.google.common.base.MoreObjects.toStringHelper;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.VIEW_PROJECT;
 
 /**
@@ -79,7 +80,7 @@ public class ProjectPresenter implements HasDispose, HasProjectId {
                       @Nonnull EventBus eventBus,
                       @Nonnull ProjectViewPlace place) {
         GWT.log("[ProjectPresenter] Starting project presenter " + eventBus.getClass().getName());
-        busyView.setMessage("Loading project.  Please wait.");
+        busyView.setMessage(MESSAGES.projectPresenter_loading());
         container.setWidget(busyView);
         permissionScreener.checkPermission(VIEW_PROJECT.getActionId(),
                                            container,

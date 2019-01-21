@@ -1,12 +1,11 @@
 package edu.stanford.bmir.protege.web.client.issues;
 
-import com.google.gwt.core.client.GWT;
-import edu.stanford.bmir.protege.web.client.Messages;
-import edu.stanford.bmir.protege.web.shared.TimeUtil;
 import edu.stanford.bmir.protege.web.shared.entity.CommentedEntityData;
+import edu.stanford.bmir.protege.web.client.ui.TimeFormatter;
 
 import javax.annotation.Nonnull;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -22,8 +21,6 @@ class CommentedEntityDataRendering {
 
     private final CommentedEntityData data;
 
-    private static final Messages MESSAGES = GWT.create(Messages.class);
-
     public CommentedEntityDataRendering(@Nonnull CommentedEntityData data) {
         this.data = checkNotNull(data);
     }
@@ -35,7 +32,7 @@ class CommentedEntityDataRendering {
 
     @Nonnull
     public String modifiedAt() {
-        return TimeUtil.getTimeRendering(data.getLastModified()).toLowerCase();
+        return TimeFormatter.get().toTimeAgo(data.getLastModified());
     }
 
     @Nonnull

@@ -15,6 +15,7 @@ import edu.stanford.bmir.protege.web.shared.project.ProjectId;
 import org.semanticweb.owlapi.model.OWLClass;
 
 import javax.inject.Provider;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 /**
  * Matthew Horridge Stanford Center for Biomedical Informatics Research 4 Dec 2017

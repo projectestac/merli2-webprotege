@@ -4,7 +4,6 @@ import com.google.auto.factory.AutoFactory;
 import com.google.auto.factory.Provided;
 import com.google.gwt.event.dom.client.ContextMenuEvent;
 import com.google.gwt.user.client.Window;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.action.UIAction;
 import edu.stanford.bmir.protege.web.client.library.msgbox.InputBox;
 import edu.stanford.bmir.protege.web.client.library.popupmenu.PopupMenu;
@@ -19,6 +18,7 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.protege.gwt.graphtree.shared.tree.RevealMode.REVEAL_FIRST;
 
 /**
@@ -26,9 +26,6 @@ import static edu.stanford.protege.gwt.graphtree.shared.tree.RevealMode.REVEAL_F
  */
 @AutoFactory
 public class EntityHierarchyContextMenuPresenter {
-
-    @Nonnull
-    private final Messages messages;
 
     @Nonnull
     private final TreeWidget<EntityHierarchyNode, OWLEntity> treeWidget;
@@ -49,9 +46,7 @@ public class EntityHierarchyContextMenuPresenter {
     public EntityHierarchyContextMenuPresenter(@Nonnull EntityHierarchyModel model,
                                                @Nonnull TreeWidget<EntityHierarchyNode, OWLEntity> treeWidget,
                                                @Nonnull UIAction createEntityAction,
-                                               @Nonnull UIAction deleteEntityAction,
-                                               @Provided Messages messages) {
-        this.messages = checkNotNull(messages);
+                                               @Nonnull UIAction deleteEntityAction) {
         this.treeWidget = checkNotNull(treeWidget);
         this.model = checkNotNull(model);
         this.createEntityAction = checkNotNull(createEntityAction);
@@ -79,14 +74,14 @@ public class EntityHierarchyContextMenuPresenter {
         contextMenu.addItem(createEntityAction);
         contextMenu.addItem(deleteEntityAction);
         contextMenu.addSeparator();
-        contextMenu.addItem(messages.tree_pruneBranchToRoot(), this::pruneSelectedNodesToRoot);
-        contextMenu.addItem(messages.tree_pruneAllBranchesToRoot(), this::pruneToKey);
-        contextMenu.addItem(messages.tree_clearPruning(), this::clearPruning);
+        contextMenu.addItem(MESSAGES.tree_pruneBranchToRoot(), this::pruneSelectedNodesToRoot);
+        contextMenu.addItem(MESSAGES.tree_pruneAllBranchesToRoot(), this::pruneToKey);
+        contextMenu.addItem(MESSAGES.tree_clearPruning(), this::clearPruning);
         contextMenu.addSeparator();
-        contextMenu.addItem(messages.showIri(), this::showIriForSelection);
-        contextMenu.addItem(messages.showDirectLink(), this::showUrlForSelection);
+        contextMenu.addItem(MESSAGES.showIri(), this::showIriForSelection);
+        contextMenu.addItem(MESSAGES.showDirectLink(), this::showUrlForSelection);
         contextMenu.addSeparator();
-        contextMenu.addItem(messages.refreshTree(), this::handleRefresh);
+        contextMenu.addItem(MESSAGES.refreshTree(), this::handleRefresh);
     }
 
 
@@ -106,13 +101,13 @@ public class EntityHierarchyContextMenuPresenter {
     private void showIriForSelection() {
         treeWidget.getFirstSelectedKey().ifPresent(sel -> {
             String iri = sel.getIRI().toString();
-            InputBox.showOkDialog(messages.classIri(), true, iri, input -> {});
+            InputBox.showOkDialog(MESSAGES.classIri(), true, iri, input -> {});
         });
     }
 
     private void showUrlForSelection() {
         String location = Window.Location.getHref();
-        InputBox.showOkDialog(messages.directLink(), true, location, input -> {});
+        InputBox.showOkDialog(MESSAGES.directLink(), true, location, input -> {});
     }
 
     private void handleRefresh() {

@@ -1,5 +1,10 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
+
     <ui:style>
         .main {
             padding-left: 30px;
@@ -10,8 +15,14 @@
         }
     </ui:style>
     <g:HTMLPanel addStyleNames="{style.main}">
-        <g:RadioButton name="watchType" ui:field="none" text="None" addStyleNames="{style.radioButton}"/>
-        <g:RadioButton name="watchType" ui:field="entity" text="Entity" addStyleNames="{style.radioButton}"/>
-        <g:RadioButton name="watchType" ui:field="branch" text="Branch" addStyleNames="{style.radioButton}"/>
+        <g:RadioButton name="watchType" ui:field="none" addStyleNames="{style.radioButton}">
+          <ui:msg>None</ui:msg>
+        </g:RadioButton>
+        <g:RadioButton name="watchType" ui:field="entity" addStyleNames="{style.radioButton}">
+          <ui:msg>Entity</ui:msg>
+        </g:RadioButton>
+        <g:RadioButton name="watchType" ui:field="branch" addStyleNames="{style.radioButton}">
+          <ui:msg>Branch</ui:msg>
+        </g:RadioButton>
     </g:HTMLPanel>
 </ui:UiBinder>

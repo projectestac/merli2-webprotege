@@ -1,9 +1,7 @@
 package edu.stanford.bmir.protege.web.client.project;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.action.AbstractUiAction;
 import edu.stanford.bmir.protege.web.client.app.Presenter;
 import edu.stanford.bmir.protege.web.client.permissions.LoggedInUserProjectPermissionChecker;
@@ -12,6 +10,7 @@ import edu.stanford.bmir.protege.web.shared.HasDispose;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.*;
 
 /**
@@ -20,8 +19,6 @@ import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.*;
  * 01/03/16
  */
 public class ProjectMenuPresenter implements HasDispose, Presenter {
-
-    private static final Messages MESSAGES = GWT.create(Messages.class);
 
     private final ProjectMenuView view;
 

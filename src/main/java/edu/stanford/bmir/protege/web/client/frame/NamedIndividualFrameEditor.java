@@ -9,7 +9,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.dispatch.DispatchServiceManager;
 import edu.stanford.bmir.protege.web.client.editor.EditorView;
 import edu.stanford.bmir.protege.web.client.editor.ValueEditor;
@@ -34,6 +33,7 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import java.util.*;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -43,8 +43,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Date: 14/12/2012
  */
 public class NamedIndividualFrameEditor extends SimplePanel implements ValueEditor<LabelledFrame<NamedIndividualFrame>>, HasEnabled, EditorView<LabelledFrame<NamedIndividualFrame>> {
-
-    private static final Messages MESSAGES = GWT.create(Messages.class);
 
     private java.util.Optional<LabelledFrame<NamedIndividualFrame>> editedFrame = java.util.Optional.empty();
 

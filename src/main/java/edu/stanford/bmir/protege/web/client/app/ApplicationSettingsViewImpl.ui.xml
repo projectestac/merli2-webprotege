@@ -1,6 +1,10 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:text="urn:import:edu.stanford.bmir.protege.web.client.library.text">
+             xmlns:text="urn:import:edu.stanford.bmir.protege.web.client.library.text"
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
 
     <ui:with field="wp" type="edu.stanford.bmir.protege.web.resources.WebProtegeClientBundle"/>
     <ui:import field="edu.stanford.bmir.protege.web.client.app.SchemeValue.*"/>
@@ -40,80 +44,108 @@
                 <g:TabLayoutPanel ui:field="tabPanel" barUnit='EM' barHeight='3' addStyleNames="{style.tabPanel}">
 
                     <g:tab>
-                        <g:header size='7'>Main Settings</g:header>
+                        <g:header size='7'>
+                          <ui:msg>Main Settings</ui:msg>
+                        </g:header>
                         <g:HTMLPanel addStyleNames="{style.tabContent}">
-                            <g:Label text="System Details" addStyleNames="{style.sectionHeading}"/>
+                            <g:Label addStyleNames="{style.sectionHeading}"><ui:msg>System Details</ui:msg></g:Label>
                             <g:HTMLPanel addStyleNames="{wp.settings.group}">
-                                <g:Label text="Application name"/>
+                                <g:Label><ui:msg>Application name</ui:msg></g:Label>
                                 <text:PlaceholderTextBox ui:field="applicationNameField"
-                                                         placeholder="Application name"/>
-                                <g:Label text="System notification email address"/>
+                                                         placeholder="Application name">
+                                  <ui:attribute name="placeholder"/>
+                                </text:PlaceholderTextBox>
+                                <g:Label><ui:msg>System notification email address</ui:msg></g:Label>
                                 <text:PlaceholderTextBox ui:field="systemNotificationEmailAddressField"
-                                                         placeholder="Email address for system notifications"/>
+                                                         placeholder="Email address for system notifications">
+                                  <ui:attribute name="placeholder"/>
+                                </text:PlaceholderTextBox>
                             </g:HTMLPanel>
 
 
-                            <g:Label text="Application URL" addStyleNames="{style.sectionHeading}"/>
-                            <div class="{wp.style.helpText}">The application URL is the URL that users use to access
-                                WebProtégé. If you have
+                            <g:Label addStyleNames="{style.sectionHeading}"><ui:msg>Application URL</ui:msg></g:Label>
+                            <div class="{wp.style.helpText}">
+                              <ui:msg>
+                                The application URL is the URL that users use to access WebProtégé. If you have
                                 something like an Apache HTTP Server sitting in-front of Tomcat then this may be
-                                different to
-                                the Tomcat URL. Note that the Path and Port fields are optional. The Host field is
-                                mandatory.
+                                different to the Tomcat URL. Note that the Path and Port fields are optional.
+                                The Host field is mandatory.
+                              </ui:msg>
                             </div>
                             <g:HTMLPanel addStyleNames="{wp.settings.group}">
-                                <g:Label text="Scheme"/>
+                                <g:Label><ui:msg>Scheme</ui:msg></g:Label>
                                 <g:ListBox ui:field="applicationSchemeField">
                                     <g:item value="HTTPS">https</g:item>
                                     <g:item value="HTTP">http</g:item>
                                 </g:ListBox>
-                                <g:Label text="Host"/>
+                                <g:Label><ui:msg>Host</ui:msg></g:Label>
                                 <text:PlaceholderTextBox ui:field="applicationHostField"
-                                                         placeholder="e.g. webprotege.stanford.edu"/>
-                                <g:Label text="Path"/>
+                                                         placeholder="e.g. webprotege.stanford.edu">
+                                  <ui:attribute name="placeholder"/>
+                                </text:PlaceholderTextBox>
+                                <g:Label><ui:msg>Path</ui:msg></g:Label>
                                 <text:PlaceholderTextBox ui:field="applicationPathField"
-                                                         placeholder="e.g. /webprotege (leave blank for no path)"/>
-                                <g:Label text="Port"/>
+                                                         placeholder="e.g. /webprotege (leave blank for no path)">
+                                  <ui:attribute name="placeholder"/>
+                                </text:PlaceholderTextBox>
+                                <g:Label><ui:msg>Port</ui:msg></g:Label>
                                 <text:PlaceholderTextBox ui:field="applicationPortField"
-                                                         placeholder="e.g. 443 (leave blank for default port)"/>
+                                                         placeholder="e.g. 443 (leave blank for default port)">
+                                  <ui:attribute name="placeholder"/>
+                                </text:PlaceholderTextBox>
                             </g:HTMLPanel>
 
                         </g:HTMLPanel>
                     </g:tab>
 
                     <g:tab>
-                        <g:header size='7'>Global Permissions</g:header>
+                        <g:header size='7'>
+                          <ui:msg>Global Permissions</ui:msg>
+                        </g:header>
                         <g:HTMLPanel addStyleNames="{style.tabContent}">
-                            <g:Label text="Account Creation" addStyleNames="{style.sectionHeading}"/>
+                            <g:Label addStyleNames="{style.sectionHeading}"><ui:msg>Account Creation</ui:msg></g:Label>
                             <g:HTMLPanel addStyleNames="{wp.settings.group}">
-                                <g:CheckBox ui:field="accountCreationEnabledCheckBox" text="Account creation enabled"
-                                            addStyleNames="{style.checkBox}"/>
+                                <g:CheckBox ui:field="accountCreationEnabledCheckBox"
+                                            addStyleNames="{style.checkBox}">
+                                  <ui:msg>Account creation enabled</ui:msg>
+                                </g:CheckBox>
                             </g:HTMLPanel>
-                            <g:Label text="Project Creation and Upload" addStyleNames="{style.sectionHeading}"/>
+                            <g:Label addStyleNames="{style.sectionHeading}"><ui:msg>Project Creation and Upload</ui:msg></g:Label>
                             <g:HTMLPanel addStyleNames="{wp.settings.group}">
-                                <g:CheckBox ui:field="projectCreationEnabledCheckBox" text="Project creation enabled"
-                                            addStyleNames="{style.checkBox}"/>
-                                <g:CheckBox ui:field="projectUploadEnabledCheckBox" text="Project upload enabled"
-                                            addStyleNames="{style.checkBox}"/>
+                                <g:CheckBox ui:field="projectCreationEnabledCheckBox"
+                                            addStyleNames="{style.checkBox}">
+                                  <ui:msg>Project creation enabled</ui:msg>
+                                </g:CheckBox>
+                                <g:CheckBox ui:field="projectUploadEnabledCheckBox"
+                                            addStyleNames="{style.checkBox}">
+                                  <ui:msg>Project upload enabled</ui:msg>
+                                </g:CheckBox>
                                 <div style="padding-left: 40px;">
-                                    <g:Label text="Max upload size (MB)"/>
+                                    <g:Label><ui:msg>Max upload size (MB)</ui:msg></g:Label>
                                     <text:PlaceholderTextBox ui:field="maxUploadSize" width="100%"
-                                                             placeholder="Enter max upload size in Megabytes (MB).  Leave blank for no limit."/>
+                                                             placeholder="Enter max upload size in Megabytes (MB).  Leave blank for no limit.">
+                                      <ui:attribute name="placeholder"/>
+                                    </text:PlaceholderTextBox>
                                 </div>
                             </g:HTMLPanel>
-                            <g:Label text="Email notifications" addStyleNames="{style.sectionHeading}"/>
+                            <g:Label addStyleNames="{style.sectionHeading}"><ui:msg>Email notifications</ui:msg></g:Label>
                             <g:HTMLPanel addStyleNames="{wp.settings.group}">
                                 <g:CheckBox ui:field="emailNotificationsEnabledCheckBox"
-                                            text="Email notifications enabled"
-                                            addStyleNames="{style.checkBox}"/>
+                                            addStyleNames="{style.checkBox}">
+                                  <ui:msg>Email notifications enabled</ui:msg>
+                                </g:CheckBox>
                             </g:HTMLPanel>
                         </g:HTMLPanel>
                     </g:tab>
                     <g:tab>
-                        <g:header size='7'>Actions</g:header>
+                        <g:header size='7'>
+                          <ui:msg>Actions</ui:msg>
+                        </g:header>
                         <g:HTMLPanel addStyleNames="{style.tabContent}">
                             <g:HTMLPanel addStyleNames="{wp.settings.group}">
-                                <g:Button ui:field="rebuildPermissionsButton" text="Rebuild permissions"/>
+                                <g:Button ui:field="rebuildPermissionsButton">
+                                  <ui:msg>Rebuild permissions</ui:msg>
+                                </g:Button>
                             </g:HTMLPanel>
 
                         </g:HTMLPanel>
@@ -121,8 +153,10 @@
                 </g:TabLayoutPanel>
 
                 <g:HTMLPanel addStyleNames="{wp.settings.buttonBar}">
-                    <g:Button ui:field="applyButton" text="Apply"
-                              addStyleNames="{wp.buttons.button} {wp.buttons.pageButton} {wp.buttons.acceptButton}"/>
+                    <g:Button ui:field="applyButton"
+                              addStyleNames="{wp.buttons.button} {wp.buttons.pageButton} {wp.buttons.acceptButton}">
+                      <ui:msg>Apply</ui:msg>
+                    </g:Button>
                 </g:HTMLPanel>
 
             </g:HTMLPanel>

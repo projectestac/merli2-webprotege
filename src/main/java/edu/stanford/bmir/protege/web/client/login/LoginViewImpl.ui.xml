@@ -1,5 +1,10 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:i18n='urn:import:cat.xtec.i18n.client.widgets'
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
 
     <ui:with field="msg" type="edu.stanford.bmir.protege.web.client.Messages"/>
     <ui:with field="wp" type="edu.stanford.bmir.protege.web.resources.WebProtegeClientBundle"/>
@@ -83,45 +88,60 @@
 
 
     <g:HTMLPanel addStyleNames="{style.main} {wp.login.login}">
-        <g:Button text="{msg.signUpForAccount}" ui:field="signUpForAccountButton"
-                  addStyleNames="{style.signup} {wp.buttons.button} {wp.buttons.pageButton} {wp.buttons.alternateButton}"/>
+        <g:HTMLPanel addStyleNames="{style.signup}">
+          <g:MenuBar>
+            <i18n:LocalesMenuItem/>
+          </g:MenuBar>
+          <g:Button text="{msg.signUpForAccount}" ui:field="signUpForAccountButton"
+                    addStyleNames="{wp.buttons.button} {wp.buttons.pageButton} {wp.buttons.alternateButton}"/>
+        </g:HTMLPanel>
         <g:HTMLPanel addStyleNames="{style.center}">
             <g:HTMLPanel addStyleNames="{style.wp-login-logo} {wp.login.loginLogo}"/>
             <g:HTMLPanel addStyleNames="{style.message}">
                 <g:Label text="{msg.signInToContinue}"/>
             </g:HTMLPanel>
 
-            <g:HTMLPanel addStyleNames="{wp.settings.inner} {style.centerPanel}">
+            <g:FormPanel>
+              <g:HTMLPanel addStyleNames="{wp.settings.inner} {style.centerPanel}">
                 <g:Label text="{msg.userName}"/>
                 <g:TextBox ui:field="userNameField" visibleLength="30"/>
                 <g:Label text="{msg.password}"/>
                 <g:PasswordTextBox ui:field="passwordField" visibleLength="30"/>
-                <div style="height: 20px;"/>
-                <g:Button ui:field="signInButton" text="{msg.signIn}"
+                <g:SubmitButton ui:field="signInButton" text="{msg.signIn}"
                           addStyleNames="{wp.buttons.button} {wp.buttons.pageButton} {wp.buttons.primaryButton} {style.signin}"/>
                 <g:HTMLPanel addStyleNames="{style.bottomBar}">
                     <g:Anchor text="{msg.forgotUserNameOrPassword}" ui:field="forgotPasswordButton"
                               addStyleNames="{style.forgotPasswordButton}"/>
                 </g:HTMLPanel>
-            </g:HTMLPanel>
+              </g:HTMLPanel>
+            </g:FormPanel>
         </g:HTMLPanel>
 
         <g:HTMLPanel addStyleNames="{style.info}">
-            <p>WebProtege is developed by the Protege team in the
-                Biomedical Informatics
-                Research Group (BMIR)
-                at Stanford University, California, USA.
+            <p>
+              <ui:msg>
+                WebProtege is developed by the Protege team in the Biomedical Informatics
+                Research Group (BMIR) at Stanford University, California, USA.
+              </ui:msg>
             </p>
 
 
-            <p>The work is supported by Grant GM121724 from the National Institute
-                of General Medical Sciences
-                at the United States National Institutes of Health.
+            <p>
+              <ui:msg>
+                The work is supported by Grant GM121724 from the National Institute
+                of General Medical Sciences at the United States National Institutes
+                of Health.
+              </ui:msg>
             </p>
             <p>
-                <a href="html/privacy.html" target="_blank">
-                    Privacy Policy</a>.
-                <a href="html/termsofuse.html" target="_blank">Terms of Use</a>
+              <g:Anchor href="html/privacy.html" target="_blank">
+                <ui:msg>Privacy Policy</ui:msg>
+                <ui:attribute name="href" description="URL of the Privacy Policy document"/>
+              </g:Anchor>.
+              <g:Anchor href="html/termsofuse.html" target="_blank">
+                <ui:msg>Terms of Use</ui:msg>
+                <ui:attribute name="href" description="URL of the Terms of Use document"/>
+              </g:Anchor>
             </p>
 
 

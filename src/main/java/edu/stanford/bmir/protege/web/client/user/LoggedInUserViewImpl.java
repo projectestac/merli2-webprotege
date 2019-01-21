@@ -8,12 +8,12 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.library.popupmenu.PopupMenu;
 
 import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 /**
  * Matthew Horridge
@@ -42,8 +42,6 @@ public class LoggedInUserViewImpl extends Composite implements LoggedInUserView 
     protected Button loggedInUserButton;
 
     private final PopupMenu popupMenu = new PopupMenu();
-
-    private static final Messages MESSAGES = GWT.create(Messages.class);
 
     @Inject
     public LoggedInUserViewImpl() {

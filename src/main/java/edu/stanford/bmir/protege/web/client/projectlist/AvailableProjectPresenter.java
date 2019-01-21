@@ -7,16 +7,18 @@ import edu.stanford.bmir.protege.web.client.projectmanager.DownloadProjectReques
 import edu.stanford.bmir.protege.web.client.projectmanager.LoadProjectInNewWindowRequestHandler;
 import edu.stanford.bmir.protege.web.client.projectmanager.LoadProjectRequestHandler;
 import edu.stanford.bmir.protege.web.client.projectmanager.TrashManagerRequestHandler;
-import edu.stanford.bmir.protege.web.shared.TimeUtil;
 import edu.stanford.bmir.protege.web.shared.project.AvailableProject;
 import edu.stanford.bmir.protege.web.shared.project.ProjectId;
+import edu.stanford.bmir.protege.web.client.ui.TimeFormatter;
 import edu.stanford.bmir.protege.web.shared.user.UserId;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.shared.project.AvailableProject.UNKNOWN;
+
 
 /**
  * Matthew Horridge
@@ -64,7 +66,7 @@ public class AvailableProjectPresenter {
         view.setProjectOwner(project.getOwner());
         String lastOpenedAt;
         if(project.getLastOpenedAt() != UNKNOWN) {
-            lastOpenedAt = TimeUtil.getTimeRendering(project.getLastOpenedAt());
+            lastOpenedAt = TimeFormatter.get().toTimeAgo(project.getLastOpenedAt());
         }
         else {
             lastOpenedAt = "";
@@ -74,7 +76,7 @@ public class AvailableProjectPresenter {
         long modifiedAtTs = project.getLastModifiedAt();
         String modifiedAt;
         if(modifiedAtTs != UNKNOWN) {
-            modifiedAt = TimeUtil.getTimeRendering(modifiedAtTs);
+            modifiedAt = TimeFormatter.get().toTimeAgo(modifiedAtTs);
         }
         else {
             modifiedAt = "";
@@ -107,7 +109,7 @@ public class AvailableProjectPresenter {
     }
 
     private void addOpenAction() {
-        view.addAction(new AbstractUiAction("Open") {
+        view.addAction(new AbstractUiAction(MESSAGES.project_Open()) {
             @Override
             public void execute() {
                 loadProjectRequestHandler.handleProjectLoadRequest(project.getProjectId());
@@ -116,7 +118,7 @@ public class AvailableProjectPresenter {
     }
 
     private void addOpenInNewWindowAction() {
-        view.addAction(new AbstractUiAction("Open in new window") {
+        view.addAction(new AbstractUiAction(MESSAGES.project_OpenInWindow()) {
             @Override
             public void execute() {
                 loadProjectInNewWindowRequestHandler.handleLoadProjectInNewWindow(project.getProjectId());
@@ -125,7 +127,7 @@ public class AvailableProjectPresenter {
     }
 
     private void addDowloadAction() {
-        AbstractUiAction downloadAction = new AbstractUiAction("Download") {
+        AbstractUiAction downloadAction = new AbstractUiAction(MESSAGES.project_Download()) {
             @Override
             public void execute() {
                 downloadProjectRequestHandler.handleProjectDownloadRequest(project.getProjectId());
@@ -138,10 +140,10 @@ public class AvailableProjectPresenter {
     private void addTrashAction() {
         String trashActionLabel;
         if(project.isInTrash()) {
-            trashActionLabel = "Remove from trash";
+            trashActionLabel = MESSAGES.project_Untrash();
         }
         else {
-            trashActionLabel = "Move to trash";
+            trashActionLabel = MESSAGES.project_Trash();
         }
         AbstractUiAction trashAction = new AbstractUiAction(trashActionLabel) {
             @Override

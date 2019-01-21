@@ -34,7 +34,7 @@ public class PaginatorViewImpl extends Composite implements PaginatorView {
     protected TextBox pageNumberField;
 
     @UiField
-    protected HasText pageCountField;
+    protected NumberLabel pageCountField;
 
     private PageNumberHandler pageNumberHandler = (value) -> {};
 
@@ -92,7 +92,7 @@ public class PaginatorViewImpl extends Composite implements PaginatorView {
 
     @Override
     public void setPageCount(int numberOfPages) {
-        pageCountField.setText(Integer.toString(numberOfPages));
+        pageCountField.setValue(numberOfPages);
     }
 
     @Override

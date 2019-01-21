@@ -9,12 +9,12 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.library.msgbox.MessageBox;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -37,7 +37,7 @@ public class LoginViewImpl extends Composite implements LoginView {
     protected PasswordTextBox passwordField;
 
     @UiField
-    protected Button signInButton;
+    protected SubmitButton signInButton;
 
     @UiField
     protected HasClickHandlers forgotPasswordButton;
@@ -51,8 +51,6 @@ public class LoginViewImpl extends Composite implements LoginView {
     private ForgotPasswordHandler forgotPasswordHandler = () -> {};
 
     private SignUpForAccountHandler signUpForAccountHandler = () -> {};
-
-    private static final Messages MESSAGES = GWT.create(Messages.class);
 
     @Inject
     public LoginViewImpl() {

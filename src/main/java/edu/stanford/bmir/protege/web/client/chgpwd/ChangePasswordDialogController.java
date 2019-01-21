@@ -6,6 +6,7 @@ import edu.stanford.bmir.protege.web.client.library.dlg.WebProtegeOKCancelDialog
 import edu.stanford.bmir.protege.web.shared.chgpwd.ChangePasswordData;
 
 import javax.annotation.Nonnull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 /**
  * Author: Matthew Horridge<br>
@@ -18,7 +19,7 @@ public class ChangePasswordDialogController extends WebProtegeOKCancelDialogCont
     private ChangePasswordView changePasswordView;
 
     public ChangePasswordDialogController(ChangePasswordView changePasswordView) {
-        super("Change password");
+        super(MESSAGES.dialog_title_changePassword());
         this.changePasswordView = changePasswordView;
     }
 

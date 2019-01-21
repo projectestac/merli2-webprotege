@@ -23,6 +23,8 @@ import org.semanticweb.owlapi.model.IRI;
 import javax.inject.Inject;
 import java.util.Optional;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
+
 /**
  * Matthew Horridge
  * Stanford Center for Biomedical Informatics Research

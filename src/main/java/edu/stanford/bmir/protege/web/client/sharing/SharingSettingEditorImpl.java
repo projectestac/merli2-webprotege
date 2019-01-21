@@ -10,7 +10,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.dispatch.DispatchServiceManager;
 import edu.stanford.bmir.protege.web.client.user.UserIdSuggestOracle;
 import edu.stanford.bmir.protege.web.shared.DirtyChangedEvent;
@@ -20,6 +19,8 @@ import edu.stanford.bmir.protege.web.shared.sharing.SharingPermission;
 import edu.stanford.bmir.protege.web.shared.sharing.SharingSetting;
 
 import java.util.Optional;
+
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 /**
  * Matthew Horridge
@@ -33,8 +34,6 @@ public class SharingSettingEditorImpl extends Composite implements SharingSettin
     }
 
     private static SharingSettingEditorImplUiBinder ourUiBinder = GWT.create(SharingSettingEditorImplUiBinder.class);
-
-    private static final Messages MESSAGES = GWT.create(Messages.class);
 
     @UiField(provided = true)
     SuggestBox personIdField;

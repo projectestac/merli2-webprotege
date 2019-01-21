@@ -1,6 +1,10 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:editor="urn:import:edu.stanford.bmir.protege.web.client.editor">
+             xmlns:editor="urn:import:edu.stanford.bmir.protege.web.client.editor"
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
 
     <ui:with field="wp" type="edu.stanford.bmir.protege.web.resources.WebProtegeClientBundle"/>
 
@@ -14,12 +18,12 @@
 
     <g:HTMLPanel addStyleNames="{wp.style.formMain}">
         <div class="{wp.style.formGroup}">
-            <g:Label text="Digit count"/>
+            <g:Label><ui:msg>Digit count</ui:msg></g:Label>
             <g:TextBox ui:field="totalDigitsEditor"/>
         </div>
         <div style="height: 10px;"/>
 
-        <g:Label text="User specific ranges"/>
+        <g:Label><ui:msg>User specific ranges</ui:msg></g:Label>
 
         <g:ScrollPanel width="500px" height="200px">
             <editor:ValueListFlexEditorImpl ui:field="userRangeTable" enabled="true" addStyleNames="{style.userRangeList}"/>

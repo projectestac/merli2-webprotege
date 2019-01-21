@@ -1,16 +1,23 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:d='urn:import:edu.stanford.bmir.protege.web.client.diff'>
+             xmlns:d='urn:import:edu.stanford.bmir.protege.web.client.diff'
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
 
     <ui:with field="mg" type="edu.stanford.bmir.protege.web.client.merge.MergeClientBundle"/>
     <ui:with field="wp" type="edu.stanford.bmir.protege.web.resources.WebProtegeClientBundle"/>
+
     <g:HTMLPanel>
         <div class="{wp.style.formGroup}">
-            <g:Label text="Commit message" addStyleNames="{wp.style.formLabel}"/>
-            <g:TextArea ui:field="commitMessageField" text="Applied changes from en external edit" characterWidth="60" visibleLines="5"/>
+            <g:Label addStyleNames="{wp.style.formLabel}"><ui:msg>Commit message</ui:msg></g:Label>
+            <g:TextArea ui:field="commitMessageField" characterWidth="60" visibleLines="5">
+              <ui:msg>Applied changes from en external edit</ui:msg>
+            </g:TextArea>
         </div>
         <div class="{wp.style.formGroup}">
-            <g:Label text="Changes to be applied" addStyleNames="{wp.style.formLabel}"/>
+            <g:Label addStyleNames="{wp.style.formLabel}"><ui:msg>Changes to be applied</ui:msg></g:Label>
             <g:ScrollPanel width="700px" height="300px">
                 <d:DiffViewImpl ui:field="diffView"/>
             </g:ScrollPanel>

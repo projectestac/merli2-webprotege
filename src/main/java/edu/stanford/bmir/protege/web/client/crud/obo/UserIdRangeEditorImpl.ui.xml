@@ -1,6 +1,11 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:text="urn:import:edu.stanford.bmir.protege.web.client.library.text">
+             xmlns:text="urn:import:edu.stanford.bmir.protege.web.client.library.text"
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
+
     <ui:style>
         .main {
             display: flex;
@@ -37,8 +42,12 @@
     <g:HTMLPanel  addStyleNames="{style.main}">
             <g:SuggestBox ui:field="userIdEditor" addStyleNames="{style.userIdEditor}"/>
             <text:PlaceholderTextBox ui:field="startEditor" visibleLength="8" placeholder="start"
-                                     addStyleNames="{style.startEditor}"/>
+                                     addStyleNames="{style.startEditor}">
+              <ui:attribute name="placeholder"/>
+            </text:PlaceholderTextBox>
             <text:PlaceholderTextBox ui:field="endEditor" visibleLength="8" placeholder="end"
-                                     addStyleNames="{style.endEditor}"/>
+                                     addStyleNames="{style.endEditor}">
+              <ui:attribute name="placeholder"/>
+            </text:PlaceholderTextBox>
     </g:HTMLPanel>
 </ui:UiBinder>

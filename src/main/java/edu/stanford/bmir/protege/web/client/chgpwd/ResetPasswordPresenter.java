@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.client.chgpwd;
 
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.dispatch.DispatchServiceCallback;
 import edu.stanford.bmir.protege.web.client.dispatch.DispatchServiceManager;
 import edu.stanford.bmir.protege.web.client.library.dlg.DialogButton;
@@ -15,6 +14,8 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
+
 /**
  * @author Matthew Horridge, Stanford University, Bio-Medical Informatics Research Group, Date: 01/10/2014
  */
@@ -26,16 +27,11 @@ public class ResetPasswordPresenter {
     @Nonnull
     private final Provider<ResetPasswordDialogController> resetPasswordDialogController;
 
-    @Nonnull
-    private final Messages messages;
-
     @Inject
     public ResetPasswordPresenter(@Nonnull DispatchServiceManager dispatchService,
-                                  @Nonnull Provider<ResetPasswordDialogController> resetPasswordDialogController,
-                                  @Nonnull Messages messages) {
+                                  @Nonnull Provider<ResetPasswordDialogController> resetPasswordDialogController) {
         this.dispatchService = dispatchService;
         this.resetPasswordDialogController = resetPasswordDialogController;
-        this.messages = messages;
     }
 
     public void resetPassword() {
@@ -44,7 +40,7 @@ public class ResetPasswordPresenter {
 
     private void showDialog() {
         ResetPasswordDialogController controller = resetPasswordDialogController.get();
-        controller.setDialogButtonHandler(DialogButton.get(messages.password_resetPassword()), (data, closer) -> {
+        controller.setDialogButtonHandler(DialogButton.get(MESSAGES.password_resetPassword()), (data, closer) -> {
             closer.hide();
             resetPassword(data);
         });
@@ -58,16 +54,16 @@ public class ResetPasswordPresenter {
             @Override
             public void handleSuccess(ResetPasswordResult result) {
                 if (result.getResultCode() == ResetPasswordResultCode.SUCCESS) {
-                    MessageBox.showMessage(messages.password_reset_success_msg(),
-                                           messages.password_reset_success_submsg());
+                    MessageBox.showMessage(MESSAGES.password_reset_success_msg(),
+                                           MESSAGES.password_reset_success_submsg());
                 }
                 else if(result.getResultCode() == ResetPasswordResultCode.INVALID_EMAIL_ADDRESS) {
-                    MessageBox.showAlert(messages.password_reset_error_invalidemail_msg(),
-                                         messages.password_reset_error_invalidemail_submsg());
+                    MessageBox.showAlert(MESSAGES.password_reset_error_invalidemail_msg(),
+                                         MESSAGES.password_reset_error_invalidemail_submsg());
                 }
                 else {
-                    MessageBox.showAlert(messages.password_reset_error_generic_msg(),
-                                         messages.password_reset_error_generic_submsg());
+                    MessageBox.showAlert(MESSAGES.password_reset_error_generic_msg(),
+                                         MESSAGES.password_reset_error_generic_submsg());
                 }
             }
         });

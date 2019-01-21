@@ -8,6 +8,8 @@ import edu.stanford.bmir.protege.web.shared.user.EmailAddress;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
+
 /**
  * Author: Matthew Horridge<br>
  * Stanford University<br>
@@ -19,7 +21,7 @@ public class ChangeEmailAddressDialogController extends WebProtegeOKCancelDialog
     private EmailAddressEditor emailAddressEditor;
 
     public ChangeEmailAddressDialogController() {
-        super("Change email address");
+        super(MESSAGES.dialog_title_changeEmailAddress());
         emailAddressEditor = new EmailAddressEditorImpl();
     }
 

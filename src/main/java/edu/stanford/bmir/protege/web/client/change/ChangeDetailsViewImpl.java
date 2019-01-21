@@ -9,7 +9,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.*;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.action.AbstractUiAction;
 import edu.stanford.bmir.protege.web.client.diff.DiffView;
 import edu.stanford.bmir.protege.web.client.library.popupmenu.PopupMenu;
@@ -25,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
-import static edu.stanford.bmir.protege.web.client.ui.NumberFormatter.format;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 /**
  * Matthew Horridge
@@ -33,8 +32,6 @@ import static edu.stanford.bmir.protege.web.client.ui.NumberFormatter.format;
  * 26/02/15
  */
 public class ChangeDetailsViewImpl extends Composite implements ChangeDetailsView {
-
-    private static Messages messages = GWT.create(Messages.class);
 
     private DownloadRevisionHandler downloadRevisionHandler = revisionNumber -> {};
 
@@ -77,7 +74,7 @@ public class ChangeDetailsViewImpl extends Composite implements ChangeDetailsVie
     protected DiffView diffView;
 
     @UiField
-    protected HasText changeCountField;
+    protected NumberLabel changeCountField;
 
     @UiField
     protected Label tooManyChangesMessage;
@@ -97,7 +94,7 @@ public class ChangeDetailsViewImpl extends Composite implements ChangeDetailsVie
         }
         PopupMenu popupMenu = new PopupMenu();
         if (revertRevisionVisible) {
-            popupMenu.addItem(new AbstractUiAction(messages.change_revertChangesInRevision() + " " + revision.get().getValue()) {
+            popupMenu.addItem(new AbstractUiAction(MESSAGES.change_revertChangesInRevision() + " " + revision.get().getValue()) {
                 @Override
                 public void execute() {
                     revertRevisionHandler.handleRevertRevision(revision.get());
@@ -108,7 +105,7 @@ public class ChangeDetailsViewImpl extends Composite implements ChangeDetailsVie
             popupMenu.addSeparator();
         }
         if (downloadRevisionVisible) {
-            popupMenu.addItem(new AbstractUiAction(messages.change_downloadRevision() + " " + revision.get().getValue()) {
+            popupMenu.addItem(new AbstractUiAction(MESSAGES.change_downloadRevision() + " " + revision.get().getValue()) {
                 @Override
                 public void execute() {
                     downloadRevisionHandler.handleDownloadRevision(revision.get());
@@ -194,10 +191,10 @@ public class ChangeDetailsViewImpl extends Composite implements ChangeDetailsVie
                          lineElement -> lineElement,
                          document -> new SafeHtmlBuilder().appendHtmlConstant(document).toSafeHtml());
         if (diff.size() < totalChanges) {
-            tooManyChangesMessage.setText(messages.showing() + " " + format(diff.size()) + " "+messages.pagination_of()+" " + format(totalChanges) + " " + messages.change_changes());
+            tooManyChangesMessage.setText(MESSAGES.change_showingChanges(diff.size(), totalChanges));
             tooManyChangesMessage.setVisible(true);
             int hiddenChanges = totalChanges - diff.size();
-            hiddenChangesCount.setText(messages.plus() + " " + format(hiddenChanges) + " " + messages.change_moreChangesNotShownHere());
+            hiddenChangesCount.setText(MESSAGES.change_plusHidden(hiddenChanges));
             hiddenChangesCount.setVisible(true);
         }
         else {
@@ -214,7 +211,7 @@ public class ChangeDetailsViewImpl extends Composite implements ChangeDetailsVie
 
     @Override
     public void setChangeCount(int changeCount) {
-        changeCountField.setText(Integer.toString(changeCount));
+        changeCountField.setValue(changeCount);
     }
 
     @Override

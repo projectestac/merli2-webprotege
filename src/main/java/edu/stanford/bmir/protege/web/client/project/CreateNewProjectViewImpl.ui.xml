@@ -1,5 +1,9 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
     <ui:with field="msg" type="edu.stanford.bmir.protege.web.client.Messages"/>
     <ui:style>
         .main {
@@ -19,7 +23,7 @@
         <g:Label text="{msg.projectSettings_description}"/>
         <g:TextArea ui:field="projectDescriptionField" addStyleNames="{style.formField}" visibleLines="5"/>
         <g:HTMLPanel ui:field="fileUploadArea">
-            <g:Label text="Create from existing sources"/>
+            <g:Label><ui:msg>Create from existing sources</ui:msg></g:Label>
             <g:HTMLPanel addStyleNames="{style.uploadContainer}">
                 <g:FormPanel ui:field="formPanel">
                     <g:FileUpload ui:field="fileUpload"/>

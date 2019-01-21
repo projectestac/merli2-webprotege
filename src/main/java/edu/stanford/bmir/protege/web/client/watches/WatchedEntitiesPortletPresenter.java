@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import java.util.Optional;
 
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.WATCH_CHANGES;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 @Portlet(id = "portlets.WatchedEntities", title = "Watched Entities")
 public class WatchedEntitiesPortletPresenter extends AbstractWebProtegePortletPresenter {
@@ -58,7 +59,7 @@ public class WatchedEntitiesPortletPresenter extends AbstractWebProtegePortletPr
     public void startPortlet(PortletUi portletUi, WebProtegeEventBus eventBus) {
         ui = Optional.of(portletUi);
         portletUi.setWidget(changeListView);
-        portletUi.addAction(new PortletAction("Refresh", this::onRefresh));
+        portletUi.addAction(new PortletAction(MESSAGES.watcher_Refresh(), this::onRefresh));
 
         eventBus.addProjectEventHandler(getProjectId(),
                                         WatchAddedEvent.ON_WATCH_ADDED, event -> refreshDelayed());

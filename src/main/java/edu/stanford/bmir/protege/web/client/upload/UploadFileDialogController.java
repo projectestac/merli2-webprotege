@@ -7,6 +7,7 @@ import edu.stanford.bmir.protege.web.client.library.dlg.*;
 import edu.stanford.bmir.protege.web.client.progress.ProgressMonitor;
 
 import javax.annotation.Nonnull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 
 /**

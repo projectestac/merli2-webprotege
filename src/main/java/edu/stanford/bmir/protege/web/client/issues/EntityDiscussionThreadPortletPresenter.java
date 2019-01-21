@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.client.issues;
 
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.action.UIAction;
 import edu.stanford.bmir.protege.web.client.filter.FilterView;
 import edu.stanford.bmir.protege.web.client.permissions.LoggedInUserProjectPermissionChecker;
@@ -19,6 +18,7 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import java.util.Optional;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.VIEW_OBJECT_COMMENT;
 import static edu.stanford.bmir.protege.web.shared.filter.FilterSetting.OFF;
 import static edu.stanford.bmir.protege.web.shared.filter.FilterSetting.ON;
@@ -47,9 +47,6 @@ public class EntityDiscussionThreadPortletPresenter extends AbstractWebProtegePo
     @Nonnull
     private final FilterView filterView;
 
-    @Nonnull
-    private final Messages messages;
-
     private Optional<PortletUi> portletUi = Optional.empty();
 
 
@@ -57,19 +54,17 @@ public class EntityDiscussionThreadPortletPresenter extends AbstractWebProtegePo
     @Inject
     public EntityDiscussionThreadPortletPresenter(@Nonnull SelectionModel selectionModel,
                                                   @Nonnull FilterView filterView,
-                                                  @Nonnull Messages messages,
                                                   @Nonnull LoggedInUserProjectPermissionChecker permissionChecker,
                                                   @Nonnull ProjectId projectId,
                                                   @Nonnull DiscussionThreadListPresenter presenter) {
         super(selectionModel, projectId);
         this.filterView = filterView;
-        this.messages = messages;
-        this.displayResolvedThreadsFilter = new FilterId(messages.discussionThread_DisplayResolvedThreads());
+        this.displayResolvedThreadsFilter = new FilterId(MESSAGES.discussionThread_DisplayResolvedThreads());
         filterView.addFilter(displayResolvedThreadsFilter, OFF);
         filterView.addValueChangeHandler(event -> handleFilterSettingChanged());
         this.presenter = presenter;
         this.permissionChecker = permissionChecker;
-        this.addCommentAction = new PortletAction(messages.startNewCommentThread(),
+        this.addCommentAction = new PortletAction(MESSAGES.startNewCommentThread(),
                                                   presenter::createThread);
     }
 
@@ -83,7 +78,7 @@ public class EntityDiscussionThreadPortletPresenter extends AbstractWebProtegePo
         portletUi.addAction(addCommentAction);
         addCommentAction.setEnabled(false);
         portletUi.setFilterView(filterView);
-        portletUi.setForbiddenMessage(messages.discussionThread_ViewingForbidden());
+        portletUi.setForbiddenMessage(MESSAGES.discussionThread_ViewingForbidden());
         presenter.setHasBusy(portletUi);
         presenter.start(eventBus);
         presenter.setEntityDisplay(this);

@@ -1,7 +1,5 @@
 package edu.stanford.bmir.protege.web.client.library.dlg;
 
-
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Button;
 import edu.stanford.bmir.protege.web.client.Messages;
 
@@ -16,8 +14,6 @@ import static com.google.common.base.MoreObjects.toStringHelper;
  * Date: 18/01/2012
  */
 public final class DialogButton {
-
-    private static Messages messages = GWT.create(Messages.class);
 
     public static final DialogButton OK = new DialogButton((getMessages()).dialog_ok());
 
@@ -36,7 +32,7 @@ public final class DialogButton {
     public static final DialogButton SELECT = new DialogButton(getMessages().dialog_select());
 
     public static Messages getMessages() {
-        return messages;
+        return Messages.MESSAGES;
     }
 
 
@@ -49,7 +45,7 @@ public final class DialogButton {
     public String getButtonName() {
         return buttonName;
     }
-    
+
     public Button createButton() {
         return new Button(buttonName);
     }

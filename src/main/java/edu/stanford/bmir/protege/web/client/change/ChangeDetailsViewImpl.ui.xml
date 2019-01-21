@@ -2,8 +2,10 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:diff="urn:import:edu.stanford.bmir.protege.web.client.diff"
              xmlns:timelabel="urn:import:edu.stanford.bmir.protege.web.client.library.timelabel"
->
-    <ui:with field="msg" type="edu.stanford.bmir.protege.web.client.Messages"/>
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
 
     <ui:style>
         .main {
@@ -119,11 +121,11 @@
             </div>
             <div class="{style.author}">
                 <g:SimplePanel ui:field="authorUserIcon" addStyleNames="{style.userIcon}"/>
-                <g:InlineLabel ui:field="authorField"/>
-                <ui:text from="{msg.change_authored}"/>
-                <g:InlineLabel ui:field="changeCountField"/>
-                <ui:text from="{msg.change_changes}"/>
-                <timelabel:ElapsedTimeLabel ui:field="timestampField" addStyleNames="{style.timestampField}"/>
+                <ui:msg>
+                  <g:InlineLabel ui:field="authorField"/> authored
+                  <g:NumberLabel ui:field="changeCountField"/> changes —
+                  <timelabel:ElapsedTimeLabel ui:field="timestampField" addStyleNames="{style.timestampField}"/>
+                </ui:msg>
             </div>
             <div class="{style.subjectsField}">
                 <g:InlineHTML ui:field="subjectsField"/>

@@ -11,6 +11,7 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 /**
  * Matthew Horridge
@@ -32,7 +33,9 @@ public class UploadAndMergeProjectWorkflow {
     }
 
     private void uploadProject(final ProjectId projectId) {
-        UploadFileDialogController uploadFileDialogController = new UploadFileDialogController("Upload ontologies", new UploadFileResultHandler() {
+        UploadFileDialogController uploadFileDialogController = new UploadFileDialogController(
+            MESSAGES.dialog_title_uploadOntologies(), new UploadFileResultHandler() {
+
             @Override
             public void handleFileUploaded(DocumentId fileDocumentId) {
                 startMergeWorkflow(projectId, fileDocumentId);

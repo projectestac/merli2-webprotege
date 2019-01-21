@@ -56,7 +56,7 @@ public class WebProtegeInitializer {
             // Consider logging and posting to server.
             GWT.log("Uncaught exception", e);
             if (e instanceof SerializationException) {
-                MessageBox.showMessage("WebProtege has been upgraded.  Please clear your browser caches and refresh your browser.");
+                MessageBox.showMessage("WebProtege has been upgraded. Please clear your browser caches and refresh your browser.");
             }
         });
         runInitTasks(initCompleteCallback);

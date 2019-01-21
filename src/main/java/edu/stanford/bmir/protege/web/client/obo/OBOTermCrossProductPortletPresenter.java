@@ -16,6 +16,8 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import java.util.Optional;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
+
 /**
  * Author: Matthew Horridge<br>
  * Stanford University<br>

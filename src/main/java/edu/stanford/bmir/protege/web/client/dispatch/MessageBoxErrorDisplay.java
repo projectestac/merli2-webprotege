@@ -15,13 +15,8 @@ public class MessageBoxErrorDisplay implements DispatchErrorMessageDisplay {
 
     private static boolean displayingError = false;
 
-    private static Messages messages;
-
     private static Messages getMessages() {
-        if(messages == null) {
-            messages = GWT.create(Messages.class);
-        }
-        return messages;
+        return Messages.MESSAGES;
     }
 
     private void displayMessageBox(String mainMessage, String subMessage) {

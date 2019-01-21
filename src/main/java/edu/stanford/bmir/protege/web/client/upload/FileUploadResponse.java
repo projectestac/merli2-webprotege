@@ -7,6 +7,8 @@ import com.google.gwt.json.client.JSONValue;
 import edu.stanford.bmir.protege.web.shared.csv.DocumentId;
 import edu.stanford.bmir.protege.web.shared.upload.FileUploadResponseAttributes;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
+
 /**
  * Author: Matthew Horridge<br>
  * Stanford University<br>

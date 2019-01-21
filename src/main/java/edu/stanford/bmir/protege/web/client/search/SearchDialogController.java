@@ -14,6 +14,7 @@ import java.util.Optional;
 
 import static edu.stanford.bmir.protege.web.client.library.dlg.DialogButton.CLOSE;
 import static edu.stanford.bmir.protege.web.client.library.dlg.DialogButton.SELECT;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static java.util.Arrays.asList;
 
 /**
@@ -29,7 +30,7 @@ public class SearchDialogController extends WebProtegeDialogController<Optional<
 
     @Inject
     public SearchDialogController(SearchPresenter searchPresenter, SelectionModel selectionModel) {
-        super("Search", asList(CLOSE, SELECT), SELECT, CLOSE);
+        super(MESSAGES.dialog_title_search(), asList(CLOSE, SELECT), SELECT, CLOSE);
         this.searchPresenter = searchPresenter;
         this.selectionModel = selectionModel;
         setDialogButtonHandler(SELECT, (data, closer) -> {
@@ -45,7 +46,7 @@ public class SearchDialogController extends WebProtegeDialogController<Optional<
     public void setEntityTypes(EntityType<?> ... entityTypes) {
         searchPresenter.setEntityTypes(entityTypes);
         if(entityTypes.length == 1) {
-            setTitle("Search for " + entityTypes[0].getPrintName());
+            setTitle(MESSAGES.search_searchFor(entityTypes[0].getPrintName()));
         }
     }
 

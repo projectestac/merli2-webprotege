@@ -8,6 +8,8 @@ import edu.stanford.bmir.protege.web.shared.crud.EntityCrudKitSettings;
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
+
 /**
  * Author: Matthew Horridge<br>
  * Stanford University<br>
@@ -16,7 +18,7 @@ import javax.inject.Inject;
  */
 public class EntityCrudKitSettingsDialogController extends WebProtegeOKCancelDialogController<EntityCrudKitSettings<?>> {
 
-    private static final String TITLE = "New Entity Settings";
+    private static final String TITLE = MESSAGES.newEntitySettings();
 
     private final EntityCrudKitSettingsEditor editor;
 

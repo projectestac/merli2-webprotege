@@ -1,7 +1,6 @@
 package edu.stanford.bmir.protege.web.client.chgpwd;
 
 import com.google.gwt.user.client.ui.Widget;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.library.dlg.DialogButton;
 import edu.stanford.bmir.protege.web.client.library.dlg.HasRequestFocus;
 import edu.stanford.bmir.protege.web.client.library.dlg.WebProtegeDialogController;
@@ -11,6 +10,7 @@ import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import java.util.Optional;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.client.library.dlg.DialogButton.CANCEL;
 import static java.util.Arrays.asList;
 
@@ -22,11 +22,11 @@ public class ResetPasswordDialogController extends WebProtegeDialogController<Re
     private ResetPasswordView view;
 
     @Inject
-    public ResetPasswordDialogController(ResetPasswordView view, Messages messages) {
-        super("Reset password",
-              asList(CANCEL, DialogButton.get(messages.password_resetPassword())),
+    public ResetPasswordDialogController(ResetPasswordView view) {
+        super(MESSAGES.dialog_title_resetPassword(),
+              asList(CANCEL, DialogButton.get(MESSAGES.password_resetPassword())),
               CANCEL,
-              DialogButton.get(messages.password_resetPassword()));
+              DialogButton.get(MESSAGES.password_resetPassword()));
         this.view = view;
     }
 

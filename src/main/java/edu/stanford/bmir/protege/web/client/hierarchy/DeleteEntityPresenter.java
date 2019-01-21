@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.client.hierarchy;
 
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.dispatch.DispatchServiceManager;
 import edu.stanford.bmir.protege.web.client.library.msgbox.MessageBox;
 import edu.stanford.bmir.protege.web.shared.entity.DeleteEntitiesAction;
@@ -14,6 +13,7 @@ import javax.inject.Inject;
 import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.client.library.dlg.DialogButton.CANCEL;
 import static edu.stanford.bmir.protege.web.client.library.dlg.DialogButton.DELETE;
 import static java.util.Collections.singleton;
@@ -24,19 +24,14 @@ import static java.util.Collections.singleton;
 public class DeleteEntityPresenter {
 
     @Nonnull
-    private final Messages messages;
-
-    @Nonnull
     private final DispatchServiceManager dispatchServiceManager;
 
     @Nonnull
     private final ProjectId projectId;
 
     @Inject
-    public DeleteEntityPresenter(@Nonnull Messages messages,
-                                 @Nonnull DispatchServiceManager dispatchServiceManager,
+    public DeleteEntityPresenter(@Nonnull DispatchServiceManager dispatchServiceManager,
                                  @Nonnull ProjectId projectId) {
-        this.messages = checkNotNull(messages);
         this.dispatchServiceManager = checkNotNull(dispatchServiceManager);
         this.projectId = checkNotNull(projectId);
     }
@@ -59,13 +54,13 @@ public class DeleteEntityPresenter {
     }
 
     private String getDeleteConfirmationTitle(@Nonnull OWLEntity entity) {
-        return messages.delete_entity_title(entity.getEntityType().getPrintName().toLowerCase());
+        return MESSAGES.delete_entity_title(entity.getEntityType().getPrintName().toLowerCase());
     }
 
     @Nonnull
     private String getDeleteConfirmationMessage(@Nonnull OWLEntity entity,
                                                 @Nonnull String browserText) {
-        return messages.delete_entity_msg(entity.getEntityType()
+        return MESSAGES.delete_entity_msg(entity.getEntityType()
                                                 .getPrintName()
                                                 .toLowerCase(),
                                           browserText);

@@ -1,7 +1,6 @@
 package edu.stanford.bmir.protege.web.client.hierarchy;
 
 import com.google.gwt.view.client.SelectionChangeEvent;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.action.UIAction;
 import edu.stanford.bmir.protege.web.shared.dispatch.actions.CreateAnnotationPropertiesAction;
 import edu.stanford.bmir.protege.web.shared.dispatch.actions.CreateDataPropertiesAction;
@@ -30,6 +29,7 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 import java.util.Optional;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.*;
 import static edu.stanford.bmir.protege.web.shared.hierarchy.HierarchyId.*;
 import static edu.stanford.protege.gwt.graphtree.shared.tree.RevealMode.REVEAL_FIRST;
@@ -52,9 +52,6 @@ public class PropertyHierarchyPortletPresenter extends AbstractWebProtegePortlet
 
     @Nonnull
     private final UIAction searchAction;
-
-    @Nonnull
-    private final Messages messages;
 
     @Nonnull
     private final PropertyHierarchyPortletView view;
@@ -106,7 +103,6 @@ public class PropertyHierarchyPortletPresenter extends AbstractWebProtegePortlet
     @Inject
     public PropertyHierarchyPortletPresenter(@Nonnull SelectionModel selectionModel,
                                              @Nonnull ProjectId projectId,
-                                             @Nonnull Messages messages,
                                              @Nonnull PropertyHierarchyPortletView view,
                                              @Nonnull EntityHierarchyModel objectPropertyHierarchyModel,
                                              @Nonnull EntityHierarchyModel dataPropertyHierarchyModel,
@@ -122,11 +118,10 @@ public class PropertyHierarchyPortletPresenter extends AbstractWebProtegePortlet
                                              @Nonnull Provider<EntityHierarchyDropHandler> entityHierarchyDropHandlerProvider) {
         super(selectionModel, projectId);
         this.view = view;
-        this.messages = messages;
-        this.createAction = new PortletAction(messages.create(), this::handleCreate);
-        this.deleteAction = new PortletAction(messages.delete(), this::handleDelete);
-        this.watchAction = new PortletAction(messages.watch(), this::handleWatch);
-        this.searchAction = new PortletAction(messages.search(), this::handleSearch);
+        this.createAction = new PortletAction(MESSAGES.create(), this::handleCreate);
+        this.deleteAction = new PortletAction(MESSAGES.delete(), this::handleDelete);
+        this.watchAction = new PortletAction(MESSAGES.watch(), this::handleWatch);
+        this.searchAction = new PortletAction(MESSAGES.search(), this::handleSearch);
         this.objectPropertyHierarchyModel = objectPropertyHierarchyModel;
         this.dataPropertyHierarchyModel = dataPropertyHierarchyModel;
         this.annotationPropertyHierarchyModel = annotationPropertyHierarchyModel;
@@ -155,17 +150,17 @@ public class PropertyHierarchyPortletPresenter extends AbstractWebProtegePortlet
         actionStatePresenter.registerAction(WATCH_CHANGES, watchAction);
 
         startTree(OBJECT_PROPERTY_HIERARCHY,
-                  messages.hierarchy_objectproperties(),
+                  MESSAGES.hierarchy_objectproperties(),
                   eventBus,
                   objectPropertyHierarchyModel, objectPropertyTree);
 
         startTree(DATA_PROPERTY_HIERARCHY,
-                  messages.hierarchy_dataproperties(),
+                  MESSAGES.hierarchy_dataproperties(),
                   eventBus,
                   dataPropertyHierarchyModel, dataPropertyTree);
 
         startTree(ANNOTATION_PROPERTY_HIERARCHY,
-                  messages.hierarchy_annotationproperties(),
+                  MESSAGES.hierarchy_annotationproperties(),
                   eventBus,
                   annotationPropertyHierarchyModel, annotationPropertyTree);
 

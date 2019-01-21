@@ -101,8 +101,9 @@ public class ClientApplicationModule {
 
     @Provides
     @ApplicationSingleton
+    @Deprecated
     Messages provideMessages() {
-        return GWT.create(Messages.class);
+        return Messages.MESSAGES;
     }
 
     @Provides

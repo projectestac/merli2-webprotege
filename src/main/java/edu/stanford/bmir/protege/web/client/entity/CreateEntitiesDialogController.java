@@ -1,7 +1,6 @@
 package edu.stanford.bmir.protege.web.client.entity;
 
 import com.google.gwt.user.client.ui.Widget;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.library.dlg.HasRequestFocus;
 import edu.stanford.bmir.protege.web.client.library.dlg.WebProtegeDialogController;
 import org.semanticweb.owlapi.model.EntityType;
@@ -11,6 +10,7 @@ import javax.inject.Inject;
 import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.client.library.dlg.DialogButton.CANCEL;
 import static edu.stanford.bmir.protege.web.client.library.dlg.DialogButton.CREATE;
 import static java.util.Arrays.asList;
@@ -24,16 +24,11 @@ public class CreateEntitiesDialogController extends WebProtegeDialogController<S
     private final CreateEntityDialogView view;
 
     @Nonnull
-    private final Messages messages;
-
-    @Nonnull
     private CreateEntityHandler createEntityHandler = createEntityInfo -> {};
 
     @Inject
-    public CreateEntitiesDialogController(@Nonnull Messages messages,
-                                          @Nonnull CreateEntityDialogView view) {
-        super(messages.create(), asList(CANCEL, CREATE), CREATE, CANCEL);
-        this.messages = checkNotNull(messages);
+    public CreateEntitiesDialogController(@Nonnull CreateEntityDialogView view) {
+        super(MESSAGES.create(), asList(CANCEL, CREATE), CREATE, CANCEL);
         this.view = checkNotNull(view);
         setDialogButtonHandler(CREATE, (data, closer) -> {
             createEntityHandler.handleCreateEntity(data);
@@ -50,7 +45,7 @@ public class CreateEntitiesDialogController extends WebProtegeDialogController<S
     }
 
     public void setEntityType(@Nonnull EntityType<?> entityType) {
-        setTitle(messages.create() + " " + entityType.getPrintName());
+        setTitle(MESSAGES.create() + " " + entityType.getPrintName());
     }
 
 

@@ -1,5 +1,9 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
 
     <ui:with field="wp" type="edu.stanford.bmir.protege.web.resources.WebProtegeClientBundle"/>
 
@@ -76,15 +80,27 @@
         }
     </ui:style>
     <g:HTMLPanel addStyleNames="{style.bar-style}">
-        <g:ToggleButton ui:field="boldButton" text="B" addStyleNames="{style.bold-button} {style.button-style}" title="Toggle Bold"/>
-        <g:ToggleButton ui:field="italicButton" text="I" addStyleNames="{style.italic-button} {style.button-style}" title="Toggle Italic"/>
-        <g:ToggleButton ui:field="underlineButton" text="U" addStyleNames="{style.underline-button} {style.button-style}" title="Toggle Underline"/>
+        <g:ToggleButton ui:field="boldButton" text="B" addStyleNames="{style.bold-button} {style.button-style}" title="Toggle Bold">
+            <ui:attribute name="title"/>
+        </g:ToggleButton>
+        <g:ToggleButton ui:field="italicButton" text="I" addStyleNames="{style.italic-button} {style.button-style}" title="Toggle Italic">
+            <ui:attribute name="title"/>
+        </g:ToggleButton>
+        <g:ToggleButton ui:field="underlineButton" text="U" addStyleNames="{style.underline-button} {style.button-style}" title="Toggle Underline">
+            <ui:attribute name="title"/>
+        </g:ToggleButton>
         <span style="width: 20px"/>
         <g:Button ui:field="bulletedListButton" addStyleNames="{style.button-style} {style.bulleted-list-button} gwt-ToggleButton" title="Insert Bulleted List">
-            <img alt="Bulleted list" src="{wp.bulletedListIcon.getSafeUri}"/>
+            <ui:attribute name="title"/>
+            <img alt="Bulleted list" src="{wp.bulletedListIcon.getSafeUri}">
+                <ui:attribute name="alt"/>
+            </img>
         </g:Button>
         <g:Button ui:field="numberedListButton" addStyleNames="{style.button-style} {style.numbered-list-button} gwt-ToggleButton" title="Insert Numbered List">
-            <img src="{wp.numberedListIcon.getSafeUri}" alt="Numbered list"/>
+            <ui:attribute name="title"/>
+            <img src="{wp.numberedListIcon.getSafeUri}" alt="Numbered list">
+                <ui:attribute name="alt"/>
+            </img>
         </g:Button>
     </g:HTMLPanel>
 </ui:UiBinder>

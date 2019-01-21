@@ -9,7 +9,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.resources.WebProtegeClientBundle;
 import edu.stanford.bmir.protege.web.shared.issues.Status;
 
@@ -18,6 +17,7 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -47,15 +47,12 @@ public class DiscussionThreadViewImpl extends Composite implements DiscussionThr
 
     private final WebProtegeClientBundle clientBundle;
 
-    private final Messages messages;
-
     private Status status = Status.OPEN;
 
     @Inject
-    public DiscussionThreadViewImpl(Messages messages, WebProtegeClientBundle clientBundle) {
+    public DiscussionThreadViewImpl(WebProtegeClientBundle clientBundle) {
         initWidget(ourUiBinder.createAndBindUi(this));
         this.clientBundle = clientBundle;
-        this.messages = messages;
     }
 
     @UiHandler("statusLabel")
@@ -74,12 +71,12 @@ public class DiscussionThreadViewImpl extends Composite implements DiscussionThr
         this.statusLabel.setVisible(true);
         this.status = checkNotNull(status);
         if(status == Status.OPEN) {
-            statusLabel.setText(messages.discussionThread_Resolve());
+            statusLabel.setText(MESSAGES.discussionThread_Resolve());
             statusLabel.addStyleName(clientBundle.discussion().discussionThreadStatusOpen());
             statusLabel.removeStyleName(clientBundle.discussion().discussionThreadStatusClosed());
         }
         else {
-            statusLabel.setText(messages.discussionThread_Reopen());
+            statusLabel.setText(MESSAGES.discussionThread_Reopen());
             statusLabel.addStyleName(clientBundle.discussion().discussionThreadStatusClosed());
             statusLabel.removeStyleName(clientBundle.discussion().discussionThreadStatusOpen());
         }

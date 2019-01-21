@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 /**
  * Author: Matthew Horridge<br>

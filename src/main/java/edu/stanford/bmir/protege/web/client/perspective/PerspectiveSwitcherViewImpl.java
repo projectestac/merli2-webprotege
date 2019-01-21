@@ -12,7 +12,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.TabBar;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.action.AbstractUiAction;
 import edu.stanford.bmir.protege.web.client.library.popupmenu.PopupMenu;
 import edu.stanford.bmir.protege.web.shared.perspective.PerspectiveId;
@@ -22,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 
@@ -70,8 +70,6 @@ public class PerspectiveSwitcherViewImpl extends Composite implements Perspectiv
 
     private boolean addViewAllowed = true;
 
-    private static Messages messages = GWT.create(Messages.class);
-
     @Inject
     public PerspectiveSwitcherViewImpl(PerspectiveLinkFactory linkFactory) {
         this.linkFactory = linkFactory;
@@ -107,7 +105,7 @@ public class PerspectiveSwitcherViewImpl extends Composite implements Perspectiv
             popupMenu.addItem(action);
         }
         popupMenu.addSeparator();
-        popupMenu.addItem(messages.perspective_addBlankTab() + "\u2026",
+        popupMenu.addItem(MESSAGES.perspective_addBlankTab() + "\u2026",
                           () -> addPerspectiveLinkRequestHandler.handleAddNewPerspectiveLinkRequest());
         popupMenu.showRelativeTo(newTabButton);
     }
@@ -131,16 +129,16 @@ public class PerspectiveSwitcherViewImpl extends Composite implements Perspectiv
             linkActivatedHandler.handlePerspectiveLinkActivated(perspectiveId);
         });
         if (addViewAllowed) {
-            linkWidget.addActionHandler(messages.perspective_addView(), () -> {
+            linkWidget.addActionHandler(MESSAGES.perspective_addView(), () -> {
                 if (addViewAllowed) {
                     addViewHandler.handleAddViewToPerspective(perspectiveId);
                 }
             });
         }
-        linkWidget.addActionHandler(messages.perspective_reset(),
+        linkWidget.addActionHandler(MESSAGES.perspective_reset(),
                                     () -> resetPerspectiveToDefaultStateHandler.handleResetPerspectiveToDefaultState(perspectiveId));
         if (closePerspectiveAllowed) {
-            linkWidget.addActionHandler(messages.perspective_close(),
+            linkWidget.addActionHandler(MESSAGES.perspective_close(),
                                         () -> {
                                             if (closePerspectiveAllowed) {
                                                 removePerspectiveLinkRequestHandler.handleRemovePerspectiveLinkRequest(perspectiveId);

@@ -6,6 +6,7 @@ import edu.stanford.bmir.protege.web.client.library.dlg.WebProtegeOKCancelDialog
 import edu.stanford.bmir.protege.web.shared.merge.MergeData;
 
 import javax.annotation.Nonnull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 /**
  * Matthew Horridge

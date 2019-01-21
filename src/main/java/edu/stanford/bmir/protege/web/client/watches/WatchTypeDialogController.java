@@ -3,6 +3,7 @@ package edu.stanford.bmir.protege.web.client.watches;
 import com.google.gwt.user.client.ui.Widget;
 import edu.stanford.bmir.protege.web.client.library.dlg.HasRequestFocus;
 import edu.stanford.bmir.protege.web.client.library.dlg.WebProtegeOKDialogController;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 
 import javax.annotation.Nonnull;
 import javax.inject.Inject;
@@ -18,7 +19,7 @@ public class WatchTypeDialogController extends WebProtegeOKDialogController<Watc
 
     @Inject
     public WatchTypeDialogController(WatchTypeSelectorView view) {
-        super("Select the type of watch");
+        super(MESSAGES.dialog_title_selectWatch());
         this.view = view;
     }
 

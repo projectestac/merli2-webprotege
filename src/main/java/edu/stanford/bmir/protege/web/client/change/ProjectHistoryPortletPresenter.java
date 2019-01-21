@@ -1,6 +1,5 @@
 package edu.stanford.bmir.protege.web.client.change;
 
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.action.UIAction;
 import edu.stanford.bmir.protege.web.client.filter.FilterView;
 import edu.stanford.bmir.protege.web.client.permissions.LoggedInUserProjectPermissionChecker;
@@ -18,6 +17,7 @@ import edu.stanford.webprotege.shared.annotations.Portlet;
 
 import javax.inject.Inject;
 
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.VIEW_CHANGES;
 import static edu.stanford.bmir.protege.web.shared.permissions.PermissionsChangedEvent.ON_PERMISSIONS_CHANGED;
 
@@ -38,8 +38,6 @@ public class ProjectHistoryPortletPresenter extends AbstractWebProtegePortletPre
 
     private final FilterView filterView;
 
-    private final Messages messages;
-
     private final ChangeListView changeListView;
 
     @Inject
@@ -47,13 +45,11 @@ public class ProjectHistoryPortletPresenter extends AbstractWebProtegePortletPre
                                           LoggedInUserProjectPermissionChecker permissionChecker,
                                           FilterView filterView,
                                           SelectionModel selectionModel,
-                                          ProjectId projectId,
-                                          Messages messages) {
+                                          ProjectId projectId) {
         super(selectionModel, projectId);
         this.presenter = presenter;
         this.permissionChecker = permissionChecker;
         this.filterView = filterView;
-        this.messages = messages;
         presenter.setDownloadVisible(true);
         changeListView = presenter.getView();
 
@@ -62,12 +58,12 @@ public class ProjectHistoryPortletPresenter extends AbstractWebProtegePortletPre
         filterView.addValueChangeHandler(event -> changeListView.setDetailsVisible(event.getValue()
                                                                                         .hasSetting(SHOW_DETAILS_FILTER,
                                                                                                     FilterSetting.ON)));
-        refreshAction = new PortletAction(messages.refresh(), () -> reload());
+        refreshAction = new PortletAction(MESSAGES.refresh(), () -> reload());
     }
 
     @Override
     public void startPortlet(PortletUi portletUi, WebProtegeEventBus eventBus) {
-        portletUi.setForbiddenMessage(messages.change_permissionDenied());
+        portletUi.setForbiddenMessage(MESSAGES.change_permissionDenied());
         portletUi.setWidget(changeListView.asWidget());
         portletUi.addAction(refreshAction);
         portletUi.setToolbarVisible(true);

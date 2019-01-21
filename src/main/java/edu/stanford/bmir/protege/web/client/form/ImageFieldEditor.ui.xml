@@ -1,5 +1,10 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             ui:baseMessagesInterface="edu.stanford.bmir.protege.web.client.Messages"
+             ui:generateFormat="com.google.gwt.i18n.server.PropertyCatalogFactory"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.MD5KeyGenerator"
+             ui:generateLocales="en">
+
     <ui:style>
         .main {
             width: 100%;
@@ -31,7 +36,9 @@
     <g:HTMLPanel addStyleNames="{style.main}" ui:field="container">
         <g:FocusPanel ui:field="focusPanel" addStyleNames="{style.focusPanel}">
             <g:HTMLPanel>
-                <g:Label ui:field="placeHolder" text="Drop images here or click to set image" addStyleNames="{style.placeHolder}"/>
+                <g:Label ui:field="placeHolder" addStyleNames="{style.placeHolder}">
+                  <ui:msg>Drop images here or click to set image</ui:msg>
+                </g:Label>
                 <g:Image ui:field="imageField" addStyleNames="{style.image}"/>
             </g:HTMLPanel>
         </g:FocusPanel>

@@ -3,7 +3,6 @@ package edu.stanford.bmir.protege.web.client.individualslist;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import edu.stanford.bmir.protege.web.client.Messages;
 import edu.stanford.bmir.protege.web.client.action.UIAction;
 import edu.stanford.bmir.protege.web.client.dispatch.DispatchServiceManager;
 import edu.stanford.bmir.protege.web.shared.dispatch.actions.CreateNamedIndividualsAction;
@@ -33,9 +32,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static edu.stanford.bmir.protege.web.client.Messages.MESSAGES;
 import static edu.stanford.bmir.protege.web.client.library.dlg.DialogButton.CANCEL;
 import static edu.stanford.bmir.protege.web.client.library.dlg.DialogButton.DELETE;
-import static edu.stanford.bmir.protege.web.client.ui.NumberFormatter.format;
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.CREATE_INDIVIDUAL;
 import static edu.stanford.bmir.protege.web.shared.access.BuiltInAction.DELETE_INDIVIDUAL;
 import static java.util.stream.Collectors.toSet;
@@ -51,8 +50,6 @@ public class IndividualsListPresenter {
     private static final int PAGE_SIZE = 500;
 
     private final DispatchServiceManager dispatchServiceManager;
-
-    private final Messages messages;
 
     private final IndividualsListView view;
 
@@ -85,13 +82,11 @@ public class IndividualsListPresenter {
                                     final SelectionModel selectionModel,
                                     DispatchServiceManager dispatchServiceManager,
                                     LoggedInUserProjectPermissionChecker permissionChecker,
-                                    Messages messages,
                                     @Nonnull CreateEntitiesDialogController controller) {
         this.projectId = projectId;
         this.permissionChecker = permissionChecker;
         this.view = view;
         this.dispatchServiceManager = dispatchServiceManager;
-        this.messages = messages;
         this.controller = controller;
         view.addSelectionHandler(event -> {
             OWLNamedIndividualData selectedItem = event.getSelectedItem();
@@ -104,9 +99,9 @@ public class IndividualsListPresenter {
             searchStringDelayTimer.schedule(SEARCH_DELAY);
         });
         view.setPageNumberChangedHandler(pageNumber -> updateList());
-        createAction = new PortletAction(messages.create(),
+        createAction = new PortletAction(MESSAGES.create(),
                                          this::handleCreateIndividuals);
-        deleteAction = new PortletAction(messages.delete(),
+        deleteAction = new PortletAction(MESSAGES.delete(),
                                          this::handleDeleteIndividuals);
     }
 
@@ -158,19 +153,8 @@ public class IndividualsListPresenter {
     }
 
     private void updateStatusLabel(int displayedIndividuals, int totalIndividuals) {
-        String suffix;
-        if (totalIndividuals == 1) {
-            suffix = " instance";
-        }
-        else {
-            suffix = " instances";
-        }
-        if (displayedIndividuals == totalIndividuals) {
-            view.setStatusMessage(format(displayedIndividuals) + suffix);
-        }
-        else {
-            view.setStatusMessage(format(displayedIndividuals) + " of " + format(totalIndividuals) + suffix);
-        }
+        String message = MESSAGES.showingInstances(displayedIndividuals, totalIndividuals);
+        view.setStatusMessage(message);
     }
 
     private void handleCreateIndividuals() {
@@ -198,11 +182,11 @@ public class IndividualsListPresenter {
         String subMessage;
         String title;
         if (sel.size() == 1) {
-            title = messages.delete_entity_title("individual");
-            subMessage = messages.delete_entity_msg("individual", sel.iterator().next().getBrowserText());
+            title = MESSAGES.delete_entity_title("individual");
+            subMessage = MESSAGES.delete_entity_msg("individual", sel.iterator().next().getBrowserText());
         }
         else {
-            title = messages.delete_entity_title("individuals");
+            title = MESSAGES.delete_entity_title("individuals");
             subMessage = "Are you sure you want to delete " + sel.size() + " individuals?";
         }
         MessageBox.showConfirmBox(title,
