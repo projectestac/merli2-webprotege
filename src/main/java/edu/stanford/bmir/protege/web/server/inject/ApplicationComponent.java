@@ -8,12 +8,14 @@ import edu.stanford.bmir.protege.web.server.app.WebProtegeConfigurationChecker;
 import edu.stanford.bmir.protege.web.server.app.WebProtegeSessionListener;
 import edu.stanford.bmir.protege.web.server.auth.AuthenticationModule;
 import edu.stanford.bmir.protege.web.server.dispatch.ActionHandlersModule;
+import edu.stanford.bmir.protege.web.server.dispatch.DispatchServiceExecutor;
 import edu.stanford.bmir.protege.web.server.init.ConfigurationTasksModule;
 import edu.stanford.bmir.protege.web.server.inject.project.ProjectComponent;
 import edu.stanford.bmir.protege.web.server.inject.project.ProjectModule;
 import edu.stanford.bmir.protege.web.server.user.UserDetailsManager;
 import edu.stanford.bmir.protege.web.shared.inject.ApplicationSingleton;
 import edu.stanford.bmir.protege.web.shared.inject.SharedApplicationModule;
+import edu.stanford.bmir.protege.web.server.project.ProjectManager;
 
 import javax.inject.Singleton;
 
@@ -50,4 +52,9 @@ public interface ApplicationComponent {
     ApplicationNameSupplier getApplicationNameProvider();
 
     ApplicationSettingsChecker getApplicationSettingsChecker();
+
+    ProjectManager getProjectManager();
+
+    DispatchServiceExecutor getDispatchServiceExecutor();
+
 }
